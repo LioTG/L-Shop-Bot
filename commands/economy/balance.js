@@ -23,10 +23,11 @@ module.exports = {
             }
 
             interaction.editReply(
+                // Operador ternario
                 targetUserId === interaction.user.id ? `Tu saldo es de <:pcb:827581416681898014> ${userProfile.balance}` : `El saldo de <@${targetUserId}> es de <:pcb:827581416681898014> ${userProfile.balance}`
             );
         } catch (error) {
-            console.log(`Error handling /balance: ${error}`);
+            console.error(`Error handling /balance: ${error}`);
         }
     },
 
