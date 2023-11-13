@@ -4,7 +4,7 @@ const {
 } = require("@discordjs/builders");
 
 const { storeComponent } = require("../components/selectMenu");
-
+const { storeEmbed } = require('../components/embedMenu')
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("selectmenu")
@@ -15,61 +15,7 @@ module.exports = {
 
     await interaction.reply({
       content: "Choose your starter!",
-      embeds: [
-        {
-          type: "rich",
-          title: `🛒 Tienda de Componentes de PC 🛒`,
-          description: `Aquí encontrarás variedad de componentes para PC con los que podrás comprar con el comando /buy item`,
-          color: 0xffffff,
-          fields: [
-            {
-              name: `AMD Ryzen 9 5900X`,
-              value: `Precio: 💸2000`,
-              inline: true,
-            },
-            {
-              name: `AMD Ryzen 9 5950X`,
-              value: `Precio: 💸2200`,
-              inline: true,
-            },
-            {
-              name: `AMD Ryzen 9 5950X`,
-              value: `Precio: 💸2200`,
-              inline: true,
-            },
-            {
-              name: `AMD Ryzen 9 5950X`,
-              value: `Precio: 💸2200`,
-              inline: true,
-            },
-            {
-              name: `AMD Ryzen 9 5950X`,
-              value: `Precio: 💸2200`,
-              inline: true,
-            },
-            {
-              name: `AMD Ryzen 9 5950X`,
-              value: `Precio: 💸2200`,
-              inline: true,
-            },
-            {
-              name: `AMD Ryzen 9 5950X`,
-              value: `Precio: 💸2200`,
-              inline: true,
-            },
-            {
-              name: `AMD Ryzen 9 5950X`,
-              value: `Precio: 💸2200`,
-              inline: true,
-            },
-            {
-              name: `AMD Ryzen 9 5950X`,
-              value: `Precio: 💸2200`,
-              inline: true,
-            },
-          ],
-        },
-      ],
+      embeds: storeEmbed,
       components: [row],
     });
   },
