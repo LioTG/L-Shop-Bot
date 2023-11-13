@@ -24,4 +24,8 @@ const caseComponent = new StringSelectMenuBuilder({
   ],
 });
 
-module.exports = { storeComponent, caseComponent };
+const components = {
+  storeComponent,
+  caseComponent
+}
+module.exports = components;

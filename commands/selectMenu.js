@@ -5,6 +5,7 @@ const {
 
 const { storeComponent } = require("../components/selectMenu");
 const { storeEmbed } = require('../components/embedMenu')
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("selectmenu")
@@ -15,7 +16,7 @@ module.exports = {
 
     await interaction.reply({
       content: "Choose your starter!",
-      embeds: storeEmbed,
+      embeds: [storeEmbed],
       components: [row],
     });
   },

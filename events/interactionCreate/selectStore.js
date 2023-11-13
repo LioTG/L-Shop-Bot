@@ -1,5 +1,5 @@
 const { ActionRowBuilder } = require("@discordjs/builders");
-const { caseComponent } = require("../../components/selectMenu");
+const { component, embed } = require('../../components/case')
 module.exports = async (interaction) => {
   if (!interaction.isStringSelectMenu()) return;
 
@@ -7,7 +7,7 @@ module.exports = async (interaction) => {
     const category = interaction.values[0];
 
     const categoryMessage = {
-      case: { content: "", embeds: [], components: caseComponent },
+      case: { content: "", embeds: [caseEmbed], components: [component] },
       motherboard: { content: "", embeds: [], components: [] },
       cpu: { content: "", embeds: [], components: [] },
       cooler: { content: "", embeds: [], components: [] },
@@ -17,11 +17,16 @@ module.exports = async (interaction) => {
       power_supply: { content: "", embeds: [], components: [] },
     };
 
+    const embeds = categoryMessage[category].embeds;
     const row = new ActionRowBuilder().addComponents(
       categoryMessage[category].components
     );
 
-    interaction.update({ components: [row] });
+    interaction.update(
+      {
+        embeds: embeds,
+        components: [row]
+      });
   }
   // console.log(interaction);
 };
