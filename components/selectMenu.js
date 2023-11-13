@@ -1,6 +1,6 @@
 const { StringSelectMenuBuilder } = require("@discordjs/builders");
 
-const menuStore = new StringSelectMenuBuilder({
+const storeComponent = new StringSelectMenuBuilder({
   custom_id: "components_store",
   placeholder: "Selecciona una categoría",
   options: [
@@ -15,13 +15,13 @@ const menuStore = new StringSelectMenuBuilder({
   ],
 });
 
-const caseStore = new StringSelectMenuBuilder({
+const caseComponent = new StringSelectMenuBuilder({
   custom_id: "case_store",
   placeholder: "Selecciona un case",
   options: [
-    { label: "Case", value: "case" },
-    { label: "Motherboard", value: "motherboard" },
+    { label: "Case Antryx", value: "antryx" },
+    { label: "Case Halion", value: "halion" },
   ],
 });
 
-module.exports = { menuStore, caseStore };
+module.exports = { storeComponent, caseComponent };

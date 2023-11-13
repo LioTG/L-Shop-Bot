@@ -1,5 +1,5 @@
 const { ActionRowBuilder } = require("@discordjs/builders");
-const { caseStore } = require("../../components/selectMenu");
+const { caseComponent } = require("../../components/selectMenu");
 module.exports = async (interaction) => {
   if (!interaction.isStringSelectMenu()) return;
 
@@ -7,7 +7,7 @@ module.exports = async (interaction) => {
     const category = interaction.values[0];
 
     const categoryMessage = {
-      case: { content: "", embeds: [], components: caseStore },
+      case: { content: "", embeds: [], components: caseComponent },
       motherboard: { content: "", embeds: [], components: [] },
       cpu: { content: "", embeds: [], components: [] },
       cooler: { content: "", embeds: [], components: [] },

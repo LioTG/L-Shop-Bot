@@ -3,7 +3,7 @@ const {
   SlashCommandBuilder,
 } = require("@discordjs/builders");
 
-const { menuStore } = require("../components/selectMenu");
+const { storeComponent } = require("../components/selectMenu");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -11,7 +11,7 @@ module.exports = {
     .setDescription("Descripcion"),
 
   async run({ interaction }) {
-    const row = new ActionRowBuilder().addComponents(menuStore);
+    const row = new ActionRowBuilder().addComponents(storeComponent);
 
     await interaction.reply({
       content: "Choose your starter!",
