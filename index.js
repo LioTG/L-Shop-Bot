@@ -22,7 +22,7 @@ new CommandHandler({
 });
 
 (async () => {
-    // await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("Connected to database.");
 
     client.login(process.env.TOKEN);

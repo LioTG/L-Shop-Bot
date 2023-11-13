@@ -5,9 +5,10 @@ module.exports = async (interaction) => {
 
   if (interaction.customId === "components_store") {
     const category = interaction.values[0];
-
+    
+    const row = new ActionRowBuilder().addComponents(component);
     const categoryMessage = {
-      case: { content: "", embeds: [caseEmbed], components: [component] },
+      case: { content: "", embeds: [embed], components: [row]},
       motherboard: { content: "", embeds: [], components: [] },
       cpu: { content: "", embeds: [], components: [] },
       cooler: { content: "", embeds: [], components: [] },
@@ -17,16 +18,8 @@ module.exports = async (interaction) => {
       power_supply: { content: "", embeds: [], components: [] },
     };
 
-    const embeds = categoryMessage[category].embeds;
-    const row = new ActionRowBuilder().addComponents(
-      categoryMessage[category].components
-    );
 
-    interaction.update(
-      {
-        embeds: embeds,
-        components: [row]
-      });
+    interaction.update(categoryMessage[category]);
   }
   // console.log(interaction);
 };

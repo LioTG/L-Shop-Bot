@@ -1,5 +1,5 @@
 const { StringSelectMenuBuilder } = require("@discordjs/builders");
-const { categorySchema } = require('../schemas/Category')
+const categorySchema  = require('../schemas/Category')
 
 const fields = []
 async () => {
@@ -25,7 +25,9 @@ const component = new StringSelectMenuBuilder({
     custom_id: "components_store",
     placeholder: "Selecciona una categoría",
     options: [
-        { label: "", value: "" },
+        { label: "njkascjnksa", value: "ascsa" },
+        { label: "njkascjnksa", value: "ascs2a" },
+        { label: "njkascjnksa", value: "asc3sa" },
     ]
 })
 
@@ -35,7 +37,7 @@ const embed = {
     title: `🛒 Cases disponibles 🛒`,
     description: "",
     color: 0xffffff,
-    fields: [fields]
+    fields: fields
 }
 
 module.exports = { embed, component }
