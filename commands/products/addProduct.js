@@ -13,6 +13,9 @@ module.exports = {
         .addStringOption(option => option.setName('nombre')
             .setDescription('Nombre del producto')
             .setRequired(true))
+        .addStringOption(option => option.setName('emoji')
+            .setDescription('ID del emoji')
+            .setRequired(true))   
         .addIntegerOption(option => option.setName('precio')
             .setDescription('Precio del producto')
             .setRequired(true)),
