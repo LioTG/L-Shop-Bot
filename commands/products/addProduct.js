@@ -19,7 +19,8 @@ module.exports = {
     async run({ interaction }) {
         const categoryId = interaction.options.getString('categoria')
         const name = interaction.options.getString('nombre')
-        const price = interaction.options.getInteger('precio');
+        const price = interaction.options.getInteger('precio')
+        const imageUrl = interaction.options.getString('emoji');
 
         await interaction.deferReply();
 
@@ -36,7 +37,7 @@ module.exports = {
             Category.updateOne({ name: name }, { $set: { products: [...products, product]} })
             await category.save();
             await product.save();
-            await interaction.editReply({ content: `${name} - ${category} ha sido creado con un precio de <:pcb:827581416681898014> ${price}` })
+            await interaction.editReply({ content: `${imageUrl} ${name} de la categoría ${category} ha sido creado con un precio de <:pcb:827581416681898014> ${price}` })
         }
         else {
             await interaction.editReply({
