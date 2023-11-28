@@ -12,9 +12,9 @@ module.exports = {
     const products = [
       {
         id: 123213,
-        name: 'Producto',
-        price: 123,
-        image: "<:adobexd:920121777043161088>"
+        name: 'Antryx Sentry SE',
+        price: 240,
+        image: "<:AntryxCase:1073777713929793558>"
       },
     ]
 
@@ -29,9 +29,9 @@ module.exports = {
       for (let i in products) {
         const product = products[i]
         shopEmbed.addFields({
-          name: product.name,
-          value: `Precio: ${product.image} ${product.price}`,
-          inline: true
+          name: `${product.image} ${product.name}`,
+          value: `Precio: <:pcb:827581416681898014> ${product.price}`,
+          inline: true,
         })
       }
       await interaction.reply({ embeds: [shopEmbed] });
