@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
-const Product = require('../../schemas/Product');
+const { Product } = require('../../schemas/Product');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -8,15 +8,7 @@ module.exports = {
     .setDescription('Compra componentes de PC.'),
 
   async run({ interaction }) {
-    // const products = await Product.find();
-    const products = [
-      {
-        id: 123213,
-        name: 'Antryx Sentry SE',
-        price: 240,
-        image: "<:AntryxCase:1073777713929793558>"
-      },
-    ]
+    const products = await Product.find();
 
     const shopEmbed = new EmbedBuilder()
       .setTitle('**🛒 Tienda de Componentes de PC 🛒**')
