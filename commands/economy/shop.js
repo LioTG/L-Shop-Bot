@@ -21,7 +21,7 @@ module.exports = {
       for (let i in products) {
         const product = products[i]
         shopEmbed.addFields({
-          name: `${product.image} ${product.name}`,
+          name: `${product.imageUrl} ${product.name}`,
           value: `Precio: <:pcb:827581416681898014> ${product.price}`,
           inline: true,
         })
