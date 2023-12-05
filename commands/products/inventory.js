@@ -6,7 +6,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('inv')
         .setDescription('Muestra tu inventario de componentes de PC.'),
-    async run(interaction) {
+    async run({interaction}) {
         const { user } = interaction;
 
         // Obtén el perfil del usuario desde la base de datos
@@ -26,10 +26,10 @@ module.exports = {
             .setTitle('**🎒 Inventario de Componentes de PC 🎒**')
             .setColor("White");
             inventoryEmbed.setDescription( `
-            **Case:** ${inventory.cases}
+            **Case:** ${inventory.case}
             **Motherboard:** ${inventory.motherboard}
             **Procesador:** ${inventory.cpu}
-            **Cooler:** ${inventory.cooler}
+            **Cooler:** ${inventory.coolers}
             **RAM:** ${inventory.ram}
             **Almacenamiento:** ${inventory.storage}
             **Tarjeta Gráfica:** ${inventory.gpu}
