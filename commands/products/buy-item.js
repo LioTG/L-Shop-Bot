@@ -59,9 +59,7 @@ module.exports = {
 
         userProfile.balance -= costoTotal;
 
-        // Actualiza el inventario del usuario
-        const inventoryItem = `${categoryId}-${name}`;
-        userProfile.inventory.push(inventoryItem);
+        userProfile.inventory.push({ category: categoryId, quantity: cantidad });
 
         await userProfile.save();
 
