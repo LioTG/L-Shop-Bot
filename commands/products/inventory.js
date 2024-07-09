@@ -32,7 +32,7 @@ module.exports = {
             
             // Agrega un campo al embed con la información formateada
             inventoryEmbed.addFields({
-                name: `**${imageUrl}** - ${name}`,
+                name: `${imageUrl} - ${name}`,
                 value: `Cantidad: ${quantity}`,
                 inline: false,
             });
@@ -41,4 +41,3 @@ module.exports = {
         await interaction.reply({ embeds: [inventoryEmbed] });
     },
 };
-

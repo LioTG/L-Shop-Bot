@@ -4,7 +4,7 @@ const Category = require('../../schemas/Category')
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('addproduct')
+        .setName('add-product')
         .setDescription('Añade un producto a la tienda.')
         .addStringOption(option => option.setName('categoria')
             .setDescription('Categoria del producto')

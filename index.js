@@ -3,8 +3,6 @@ const { Client, IntentsBitField } = require('discord.js');
 const { CommandHandler } = require('djs-commander');
 const mongoose = require('mongoose');
 const path = require('path');
-const Product = require('./schemas/Product');
-const { EmbedBuilder } = require('@discordjs/builders');
 
 const client = new Client({
     intents: [

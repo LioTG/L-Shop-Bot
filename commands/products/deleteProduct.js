@@ -4,7 +4,7 @@ const Category = require('../../schemas/Category');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('deleteproduct')
+    .setName('delete-product')
     .setDescription('Elimina un producto de la tienda.')
     .addStringOption(option => option.setName('nombre')
       .setDescription('Nombre del producto a eliminar')

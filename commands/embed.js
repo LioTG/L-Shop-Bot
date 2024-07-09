@@ -9,11 +9,11 @@ module.exports = {
 
         const embed = new EmbedBuilder()
         .setColor("White")
-        .setTitle('THE EMBED TITLE')
-        .setURL('https://discord.js.org/')
+        .setTitle('L.Studios')
+        .setURL('https://nutellagamertv2000.wixsite.com/lstudios')
         .setAuthor({ name: `L-Shop`, iconURL: `https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true`})
         .setDescription('This is L-Shop Bot')
-        .setThumbnail('https://i.imgur.com/AfFp7pu.png')
+        .setThumbnail('https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true')
 	    .addFields(
 		{ name: 'Regular field title', value: 'Some value here' },
 		{ name: '\u200B', value: '\u200B' },
@@ -21,9 +21,9 @@ module.exports = {
 		{ name: 'Inline field title', value: 'Some value here', inline: true },
 	    )
 	    .addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
-	    .setImage('https://i.imgur.com/AfFp7pu.png')
+	    .setImage('https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true')
 	    .setTimestamp()
-	    .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+	    .setFooter({ text: 'Some footer text here', iconURL: 'https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true' });
 
         await interaction.reply({ embeds: [embed] })
     }

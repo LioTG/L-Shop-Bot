@@ -3,7 +3,7 @@ const { Product } = require('../../schemas/Product');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('editproduct')
+    .setName('edit-product')
     .setDescription('Edita un producto en la tienda.')
     .addStringOption(option => option.setName('nombre')
       .setDescription('Nombre del producto a editar')
