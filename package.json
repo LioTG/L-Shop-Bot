@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^1.6.5",
-    "discord.js": "^14.14.1",
+    "discord.js": "^14.15.3",
     "djs-commander": "^0.0.50",
     "dotenv": "^16.3.1",
     "mongoose": "^8.0.2",
