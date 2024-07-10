@@ -1,3 +1,5 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder } = require('discord.js');
 const Cooldown = require('../../schemas/Cooldown');
 const UserProfile = require('../../schemas/UserProfile');
 
@@ -8,6 +10,10 @@ function getRandomNumber(x, y) {
 }
 
 module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('work')
+        .setDescription('Trabaja para tener dinero extra.'),
+
     run: async ({ interaction }) => {
         if (!interaction.inGuild()) {
             await interaction.reply({
@@ -28,37 +34,54 @@ module.exports = {
             if (cooldown && Date.now() < cooldown.endsAt) {
                 const { default: prettyMs } = await import('pretty-ms');
 
-                await interaction.editReply(
-                    `No puedes trabajar por ${prettyMs(cooldown.endsAt - Date.now())}`
-                );
+                await interaction.editReply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setColor('#FF0000')
+                            .setTitle('Cooldown')
+                            .setDescription(`No puedes trabajar por ${prettyMs(cooldown.endsAt - Date.now())}`)
+                            .setTimestamp()
+                            .setAuthor({
+                                name: interaction.user.username,
+                                iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                            })
+                    ]
+                });
                 return;
             }
 
-            if(!cooldown) {
+            if (!cooldown) {
                 cooldown = new Cooldown({ userId, commandName });
             }
 
-          const amount = getRandomNumber(30, 80);
+            const amount = getRandomNumber(30, 80);
 
-          let userProfile = await UserProfile.findOne({ userId }).select('userId balance');
+            let userProfile = await UserProfile.findOne({ userId }).select('userId balance');
 
-          if (!userProfile) {
-            userProfile = new UserProfile({ userId });
-          }
+            if (!userProfile) {
+                userProfile = new UserProfile({ userId });
+            }
 
-          userProfile.balance += amount;
-          cooldown.endsAt = Date.now() + 300_000;
+            userProfile.balance += amount;
+            cooldown.endsAt = Date.now() + 300_000;
 
-          await Promise.all([cooldown.save(), userProfile.save()]);
+            await Promise.all([cooldown.save(), userProfile.save()]);
 
-          await interaction.editReply(`Obtuviste <:pcb:827581416681898014> ${amount}!\nNuevo saldo: <:pcb:827581416681898014> ${userProfile.balance}`);
+            await interaction.editReply({
+                embeds: [
+                    new EmbedBuilder()
+                        .setColor('#00FF00')
+                        .setTitle('Trabajo completado!')
+                        .setDescription(`Obtuviste <:pcb:827581416681898014> ${amount}!\nNuevo saldo: <:pcb:827581416681898014> ${userProfile.balance}`)
+                        .setTimestamp()
+                        .setAuthor({
+                            name: interaction.user.username,
+                            iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                        })
+                ]
+            });
         } catch (error) {
             console.log(`Error handling /work: ${error}`);
         }
-    },
-
-    data: {
-        name: 'work',
-        description: 'Trabaja para tener dinero extra.'
-    },
+    }
 };

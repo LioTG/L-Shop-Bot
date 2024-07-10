@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType } = require('discord.js');
+const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 const UserProfile = require('../../schemas/UserProfile');
 
 module.exports = {
@@ -16,7 +16,17 @@ module.exports = {
         const donationAmount = interaction.options.getInteger('amount');
 
         if (!recipientUserId || donationAmount <= 0) {
-            interaction.editReply("Por favor, proporciona un destinatario válido y una cantidad positiva para la donación.");
+            const errorEmbed = new EmbedBuilder()
+                .setColor('#FF0000')
+                .setTitle('Error')
+                .setDescription('Por favor, proporciona un destinatario válido y una cantidad positiva para la donación.')
+                .setTimestamp()
+                .setAuthor({
+                    name: interaction.user.username,
+                    iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                });
+
+            await interaction.editReply({ embeds: [errorEmbed] });
             return;
         }
 
@@ -36,7 +46,17 @@ module.exports = {
             }
 
             if (senderProfile.balance < donationAmount) {
-                interaction.editReply("No tienes suficiente saldo para realizar esta donación.");
+                const insufficientFundsEmbed = new EmbedBuilder()
+                    .setColor('#FF0000')
+                    .setTitle('Saldo insuficiente')
+                    .setDescription('No tienes suficiente saldo para realizar esta donación.')
+                    .setTimestamp()
+                    .setAuthor({
+                        name: interaction.user.username,
+                        iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                    });
+
+                await interaction.editReply({ embeds: [insufficientFundsEmbed] });
                 return;
             }
 
@@ -48,9 +68,23 @@ module.exports = {
             await senderProfile.save();
             await recipientProfile.save();
 
-            interaction.editReply(`Has donado <:pcb:827581416681898014> ${donationAmount} a <@${recipientUserId}>. Tu saldo actual es de <:pcb:827581416681898014> ${senderProfile.balance}.`);
+            const successEmbed = new EmbedBuilder()
+                .setColor('#00FF00')
+                .setTitle('Donación Exitosa')
+                .setDescription(`Has donado <:pcb:827581416681898014> ${donationAmount} a <@${recipientUserId}>.\nTu saldo actual es de <:pcb:827581416681898014> ${senderProfile.balance}.`)
+                .setTimestamp()
+                .setAuthor({
+                    name: interaction.user.username,
+                    iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                });
+
+            await interaction.editReply({ embeds: [successEmbed] });
         } catch (error) {
             console.log(`Error handling /donate: ${error}`);
+            await interaction.editReply({
+                content: "Ocurrió un error al intentar realizar la donación.",
+                ephemeral: true,
+            });
         }
     },
 
@@ -72,4 +106,4 @@ module.exports = {
             }
         ]
     }
-}
+};

@@ -1,20 +1,15 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
-const userProfileSchema = new Schema({
-    userId: {
-        type: String,
-        required: true,
-    },
-    balance: {
-        type: Number,
-        default: 0,
-    },
-    lastDailyCollected: {
-        type: Date,
-    },
-    inventory: [String]
-},
-    { timestamps: true }
-);
+const InventoryItemSchema = new mongoose.Schema({
+    category: { type: String, required: true },
+    name: { type: String, required: true },
+    quantity: { type: Number, required: true }
+});
 
-module.exports = model('UserProfile', userProfileSchema);
+const UserProfileSchema = new mongoose.Schema({
+    userId: { type: String, required: true, unique: true },
+    balance: { type: Number, required: true },
+    inventory: { type: [InventoryItemSchema], default: [] }
+});
+
+module.exports = mongoose.model('UserProfile', UserProfileSchema);

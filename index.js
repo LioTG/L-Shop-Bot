@@ -25,5 +25,3 @@ new CommandHandler({
 
     client.login(process.env.TOKEN);
 })();
-
-

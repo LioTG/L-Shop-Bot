@@ -1,3 +1,4 @@
+const { EmbedBuilder } = require('discord.js');
 const Cooldown = require('../../schemas/Cooldown');
 const UserProfile = require('../../schemas/UserProfile');
 
@@ -28,9 +29,13 @@ module.exports = {
             if (cooldown && Date.now() < cooldown.endsAt) {
                 const { default: prettyMs } = await import('pretty-ms');
 
-                await interaction.editReply(
-                    `No puedes cometer un crimen por ${prettyMs(cooldown.endsAt - Date.now())}`
-                );
+                const cooldownEmbed = new EmbedBuilder()
+                    .setColor('#FF0000')
+                    .setTitle('Cooldown')
+                    .setDescription(`No puedes cometer un crimen por ${prettyMs(cooldown.endsAt - Date.now())}`)
+                    .setTimestamp();
+
+                await interaction.editReply({ embeds: [cooldownEmbed] });
                 return;
             }
 
@@ -40,6 +45,8 @@ module.exports = {
 
             const success = Math.random() < 0.5; // 50% de probabilidad de éxito
             let message = '';
+            let color = '';
+            let title = '';
 
             if (success) {
                 const amount = getRandomNumber(200, 300);
@@ -55,6 +62,8 @@ module.exports = {
                 await Promise.all([cooldown.save(), userProfile.save()]);
 
                 message = `¡Has tenido éxito en el crimen y obtuviste <:pcb:827581416681898014> ${amount}!\nNuevo saldo: <:pcb:827581416681898014> ${userProfile.balance}`;
+                color = '#00FF00';
+                title = 'Éxito';
             } else {
                 const lossAmount = getRandomNumber(200, 250);
                 let userProfile = await UserProfile.findOne({ userId }).select('userId balance');
@@ -69,12 +78,28 @@ module.exports = {
                 await Promise.all([cooldown.save(), userProfile.save()]);
 
                 message = `¡Has sido atrapado en el crimen y has perdido <:pcb:827581416681898014> ${lossAmount}!\nNuevo saldo: <:pcb:827581416681898014> ${userProfile.balance}`;
+                color = '#FF0000';
+                title = 'Fallo';
             }
 
-            await interaction.editReply(message);
+            const resultEmbed = new EmbedBuilder()
+                .setColor(color)
+                .setTitle(title)
+                .setDescription(message)
+                .setTimestamp()
+                .setAuthor({
+                    name: interaction.user.username,
+                    iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                });
+
+            await interaction.editReply({ embeds: [resultEmbed] });
 
         } catch (error) {
             console.log(`Error handling /crime: ${error}`);
+            await interaction.editReply({
+                content: "Ocurrió un error al intentar cometer el crimen.",
+                ephemeral: true,
+            });
         }
     },
 

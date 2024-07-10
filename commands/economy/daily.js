@@ -1,3 +1,4 @@
+const { EmbedBuilder } = require('discord.js');
 const UserProfile = require('../../schemas/UserProfile');
 
 const dailyAmount = 100;
@@ -23,7 +24,17 @@ module.exports = {
                 const currentDate = new Date().toDateString();
 
                 if (lastDailyDate === currentDate) {
-                    interaction.editReply("Ya has reclamado tu recompensa diaria. Vuelve mañana.");
+                    const cooldownEmbed = new EmbedBuilder()
+                        .setColor('#FF0000')
+                        .setTitle('Recompensa Diaria')
+                        .setDescription('Ya has reclamado tu recompensa diaria. Vuelve mañana.')
+                        .setTimestamp()
+                        .setAuthor({
+                            name: interaction.user.username,
+                            iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                        });
+
+                    await interaction.editReply({ embeds: [cooldownEmbed] });
                     return;
                 }
             } else {
@@ -32,17 +43,29 @@ module.exports = {
                 });
             }
 
-          userProfile.balance += dailyAmount;
-          userProfile.lastDailyCollected = new Date();
-          
-          await userProfile.save();
+            userProfile.balance += dailyAmount;
+            userProfile.lastDailyCollected = new Date();
 
-          interaction.editReply(
-            `<:pcb:827581416681898014> ${dailyAmount} LioCoins fueron añadidos a tu saldo.\nNuevo saldo: <:pcb:827581416681898014> ${userProfile.balance}`
-          );
+            await userProfile.save();
+
+            const rewardEmbed = new EmbedBuilder()
+                .setColor('#00FF00')
+                .setTitle('Recompensa Diaria')
+                .setDescription(`<:pcb:827581416681898014> ${dailyAmount} LioCoins fueron añadidos a tu saldo.\nNuevo saldo: <:pcb:827581416681898014> ${userProfile.balance}`)
+                .setTimestamp()
+                .setAuthor({
+                    name: interaction.user.username,
+                    iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                });
+
+            await interaction.editReply({ embeds: [rewardEmbed] });
 
         } catch (error) {
             console.log(`Error handling /daily: ${error}`);
+            await interaction.editReply({
+                content: "Ocurrió un error al reclamar tu recompensa diaria.",
+                ephemeral: true,
+            });
         }
     },
 

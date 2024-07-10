@@ -23,7 +23,7 @@ module.exports = {
 	    .addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
 	    .setImage('https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true')
 	    .setTimestamp()
-	    .setFooter({ text: 'Some footer text here', iconURL: 'https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true' });
+	    .setFooter({ text: 'Creado por: liotg', iconURL: 'https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true' });
 
         await interaction.reply({ embeds: [embed] })
     }
