@@ -8,8 +8,9 @@ const InventoryItemSchema = new mongoose.Schema({
 
 const UserProfileSchema = new mongoose.Schema({
     userId: { type: String, required: true, unique: true },
-    balance: { type: Number, required: true },
-    inventory: { type: [InventoryItemSchema], default: [] }
+    balance: { type: Number, required: true, default: 0 },
+    inventory: { type: [InventoryItemSchema], default: [] },
+    lastDailyCollected: { type: Date }
 });
 
 module.exports = mongoose.model('UserProfile', UserProfileSchema);

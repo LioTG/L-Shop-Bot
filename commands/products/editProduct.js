@@ -28,11 +28,11 @@ module.exports = {
       if (product) {
         await interaction.editReply({ content: `${name} ha sido editado. Nuevo precio: <:pcb:827581416681898014> ${newPrice}` });
       } else {
-        await interaction.editReply({ content: `No se encontró un producto con el nombre ${name}.` });
+        await interaction.editReply({ content: `No se encontró un producto con el nombre ${name}.`, ephemeral: true });
       }
     } catch (error) {
       console.error(error);
-      await interaction.editReply({ content: 'Hubo un error al intentar editar el producto.' });
+      await interaction.editReply({ content: 'Hubo un error al intentar editar el producto.', ephemeral: true });
     }
   },
 };

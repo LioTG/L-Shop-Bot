@@ -27,7 +27,7 @@ module.exports = {
         const userProfile = await UserProfile.findOne({ userId: userId });
 
         if (!userProfile) {
-            await interaction.reply('No tienes un perfil registrado. ¡Regístrate primero!');
+            await interaction.reply({ content: 'No tienes un perfil registrado. ¡Regístrate primero!', ephemeral: true });
             return;
         }
 
@@ -35,7 +35,7 @@ module.exports = {
         let inventoryItem = userProfile.inventory.find(item => item.name === name);
 
         if (!inventoryItem || inventoryItem.quantity < cantidad) {
-            await interaction.reply(`No tienes suficientes ${name}(s) en tu inventario.`);
+            await interaction.reply({ content: `No tienes suficientes ${name}(s) en tu inventario.`, ephemeral: true });
             return;
         }
 
@@ -43,7 +43,7 @@ module.exports = {
         const product = await Product.findOne({ name: name });
 
         if (!product) {
-            await interaction.reply(`No se encontró información del producto ${name}.`);
+            await interaction.reply({ content: `No existe un producto con el nombre ${name}.`, ephemeral: true });
             return;
         }
 
@@ -65,12 +65,14 @@ module.exports = {
             const sellEmbed = new EmbedBuilder()
                 .setTitle(`Venta de ${cantidad} ${name}(s)`)
                 .setColor('#00ff00')
-                .setDescription(`Has vendido ${cantidad} ${name}(s) por <:pcb:827581416681898014> ${ventaTotal}!`);
+                .setDescription(`Has vendido ${cantidad} ${name}(s) por <:pcb:827581416681898014> ${ventaTotal}!`)
+                .setTimestamp()
+                .setFooter({ text: '¡Venta exitosa!' });
 
             await interaction.reply({ embeds: [sellEmbed] });
         } catch (error) {
             console.error('Error al guardar el perfil de usuario:', error);
-            await interaction.reply(`Ocurrió un error al intentar vender el producto. Error: ${error.message}`);
+            await interaction.reply({ content: `Ocurrió un error al intentar vender el producto. Error: ${error.message}`, ephemeral: true});
         }
     },
 };

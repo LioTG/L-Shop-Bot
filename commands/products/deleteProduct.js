@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Product } = require('../../schemas/Product');
-const Category = require('../../schemas/Category');
+const { Category } = require('../../schemas/Category');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -25,7 +25,9 @@ module.exports = {
           { new: true }
         );
 
-        await category.save();
+        if (category) {
+          await category.save();
+        }
         await interaction.editReply({ content: `${name} ha sido eliminado de la tienda.` });
       } else {
         await interaction.editReply({ content: `No se encontró un producto con el nombre ${name}.` });

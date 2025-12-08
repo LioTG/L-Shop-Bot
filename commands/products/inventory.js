@@ -14,7 +14,7 @@ module.exports = {
         const userProfile = await UserProfile.findOne({ userId: user.id });
 
         if (!userProfile) {
-            await interaction.reply('No tienes un perfil registrado. ¡Regístrate primero!');
+            await interaction.reply({ content: 'No tienes un perfil registrado. ¡Regístrate primero!', ephemeral: true });
             return;
         }
 
@@ -22,7 +22,7 @@ module.exports = {
         const inventory = userProfile.inventory;
 
         if (!inventory || inventory.length === 0) {
-            await interaction.reply('Tu inventario está vacío.');
+            await interaction.reply({ content: 'Tu inventario está vacío.', ephemeral: true });
             return;
         }
 

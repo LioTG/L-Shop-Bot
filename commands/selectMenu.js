@@ -1,23 +1,14 @@
-const {
-  ActionRowBuilder,
-  SlashCommandBuilder,
-} = require("@discordjs/builders");
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
-const { storeComponent } = require("../components/selectMenu");
-const { storeEmbed } = require('../components/embedMenu')
-
+// Marcado para eliminar el comando antiguo "selectmenu" de Discord.
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("selectmenu")
-    .setDescription("Descripcion"),
-
-  async run({ interaction }) {
-    const row = new ActionRowBuilder().addComponents(storeComponent);
-
-    await interaction.reply({
-      content: "Choose your starter!",
-      embeds: [storeEmbed],
-      components: [row],
-    });
+    .setName('selectmenu')
+    .setDescription('deprecated'),
+  // djs-commander usará esto para borrar el comando registrado.
+  deleted: true,
+  // Nunca se ejecutará; se requiere para pasar la validación del handler.
+  run: async ({ interaction }) => {
+    await interaction.reply({ content: 'Este comando está deshabilitado.', ephemeral: true });
   },
 };
