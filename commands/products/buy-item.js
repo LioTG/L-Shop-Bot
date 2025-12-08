@@ -1,25 +1,39 @@
 const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
+const fs = require('fs/promises');
+const path = require('path');
 const UserProfile = require('../../schemas/UserProfile');
 const { Product } = require('../../schemas/Product');
+
+const PRODUCTS_JSON_PATH = path.join(__dirname, '..', '..', 'data', 'products.json');
+
+const loadProductsFromJson = async () => {
+    try {
+        const content = await fs.readFile(PRODUCTS_JSON_PATH, 'utf8');
+        const data = JSON.parse(content);
+        return Array.isArray(data) ? data : [];
+    } catch (err) {
+        console.error('No se pudo leer data/products.json para autocomplete:', err);
+        return [];
+    }
+};
+
+// Carga productos desde JSON; si está vacío, cae a la base de datos.
+const loadProducts = async () => {
+    const fromJson = await loadProductsFromJson();
+    if (fromJson.length) return fromJson;
+    try {
+        const fromDb = await Product.find().lean();
+        return fromDb;
+    } catch (err) {
+        console.error('No se pudo leer productos desde Mongo:', err);
+        return [];
+    }
+};
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('buy-item')
         .setDescription('Compra un componente de PC.')
-        .addStringOption(option =>
-            option.setName('categoria')
-                .setDescription('Categoría del producto')
-                .setRequired(true)
-                .addChoices(
-                    { name: 'Cases', value: 'cases' },
-                    { name: 'Motherboards', value: 'motherboard' },
-                    { name: 'Procesadores', value: 'cpu' },
-                    { name: 'Coolers', value: 'cooler' },
-                    { name: 'RAM', value: 'ram' },
-                    { name: 'Almacenamiento', value: 'storage' },
-                    { name: 'Tarjetas Gráficas', value: 'gpu' },
-                    { name: 'Fuente de poder', value: 'psu' },
-                ))
         .addStringOption(option =>
             option.setName('nombre')
                 .setDescription('Nombre del producto')
@@ -37,33 +51,32 @@ module.exports = {
                 const focusedOption = interaction.options.getFocused(true);
                 if (focusedOption.name !== 'nombre') return;
 
-                const categoryId = interaction.options.getString('categoria');
-                const searchQuery = focusedOption.value || '';
+                const searchQuery = (focusedOption.value || '').toLowerCase();
 
-                const nameFilter = searchQuery ? { name: new RegExp(searchQuery, 'i') } : {};
-                const filter = categoryId ? { ...nameFilter, category: categoryId } : nameFilter;
+                const products = await loadProducts();
+                console.log(`[autocomplete /buy-item] query="${searchQuery}" src_count=${products.length}`);
 
-                let products = await Product.find(filter).limit(25);
+                const filtered = products.filter((p) => {
+                    const matchesName = searchQuery
+                        ? (p.name || '').toLowerCase().includes(searchQuery)
+                        : true;
+                    return matchesName;
+                });
 
-                // Si no hay resultados en la categoría elegida, intenta sin categoría para dar alguna sugerencia.
-                if (!products.length && categoryId) {
-                    products = await Product.find(nameFilter).limit(25);
-                }
-
-                const choices = products.map(product => ({ name: product.name, value: product.name }));
+                const choices = filtered.slice(0, 25).map(product => ({ name: product.name, value: product.name }));
                 await interaction.respond(choices);
             } catch (error) {
                 console.error('Error en autocomplete /buy-item:', error);
+                try { await interaction.respond([]); } catch (_) {}
             }
         },
 
     async run({ interaction }) {    
         const userId = interaction.user.id;
-        const categoryId = interaction.options.getString('categoria');
         const nameQuery = interaction.options.getString('nombre');
         const cantidad = interaction.options.getInteger('cantidad') || 1;
 
-        console.log(`Usuario: ${userId}, Categoría: ${categoryId}, Nombre(query): ${nameQuery}, Cantidad: ${cantidad}`);
+        console.log(`Usuario: ${userId}, Nombre(query): ${nameQuery}, Cantidad: ${cantidad}`);
 
         const userProfile = await UserProfile.findOne({ userId: userId });
 
@@ -72,14 +85,57 @@ module.exports = {
             return;
         }
 
-        // Buscar productos que coincidan con la categoría y el texto proporcionado.
-        const nameFilter = nameQuery ? { name: new RegExp(nameQuery, 'i') } : {};
-        const filter = categoryId ? { ...nameFilter, category: categoryId } : nameFilter;
+        const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-        const products = await Product.find(filter).sort({ name: 1 }).limit(10);
+        const comprar = async (product, replyFn) => {
+            const costoTotal = product.price * cantidad;
+            if (userProfile.balance < costoTotal) {
+                await replyFn({ content: 'No tienes suficiente dinero para comprar estos productos.', flags: MessageFlags.Ephemeral });
+                return;
+            }
+
+            const inventoryItemIndex = userProfile.inventory.findIndex(item => item.name === product.name);
+
+            if (inventoryItemIndex !== -1) {
+                userProfile.inventory[inventoryItemIndex].quantity += cantidad;
+            } else {
+                userProfile.inventory.push({ category: product.category, name: product.name, quantity: cantidad });
+            }
+
+            userProfile.balance -= costoTotal;
+
+            await userProfile.save();
+
+            const embed = new EmbedBuilder()
+                .setTitle('Compra exitosa')
+                .setColor(0x00FF00)
+                .setDescription(`Has comprado **${cantidad}** ${product.name}(s) por <:pcb:827581416681898014> **${costoTotal}**!`)
+                .addFields(
+                    { name: 'Producto', value: product.name, inline: true },
+                    { name: 'Cantidad', value: cantidad.toString(), inline: true },
+                    { name: 'Costo total', value: `<:pcb:827581416681898014> ${costoTotal}`, inline: true }
+                )
+                .setTimestamp()
+                .setFooter({ text: '¡Gracias por tu compra!' });
+
+            await replyFn({ embeds: [embed] });
+        };
+
+        // Intento de compra directa si el nombre coincide exactamente (selección desde autocomplete).
+        if (nameQuery) {
+            const exact = await Product.findOne({ name: new RegExp(`^${escapeRegex(nameQuery)}$`, 'i') });
+            if (exact) {
+                await comprar(exact, interaction.reply.bind(interaction));
+                return;
+            }
+        }
+
+        // Buscar productos que coincidan con el texto proporcionado.
+        const nameFilter = nameQuery ? { name: new RegExp(nameQuery, 'i') } : {};
+        const products = await Product.find(nameFilter).sort({ name: 1 }).limit(10);
 
         if (!products.length) {
-            await interaction.reply({ content: `No encontré productos que coincidan con "${nameQuery}" en la categoría "${categoryId}".`, flags: MessageFlags.Ephemeral });
+            await interaction.reply({ content: `No encontré productos que coincidan con "${nameQuery}".`, flags: MessageFlags.Ephemeral });
             return;
         }
 
@@ -121,38 +177,8 @@ module.exports = {
             const product = products[choice - 1];
             collector.stop('selected');
 
-            const costoTotal = product.price * cantidad;
-            if (userProfile.balance < costoTotal) {
-                await interaction.followUp({ content: 'No tienes suficiente dinero para comprar estos productos.', flags: MessageFlags.Ephemeral });
-                return;
-            }
-
-            const inventoryItemIndex = userProfile.inventory.findIndex(item => item.name === product.name);
-
             try {
-                if (inventoryItemIndex !== -1) {
-                    userProfile.inventory[inventoryItemIndex].quantity += cantidad;
-                } else {
-                    userProfile.inventory.push({ category: product.category, name: product.name, quantity: cantidad });
-                }
-
-                userProfile.balance -= costoTotal;
-
-                await userProfile.save();
-
-                const embed = new EmbedBuilder()
-                    .setTitle('Compra exitosa')
-                    .setColor(0x00FF00)
-                    .setDescription(`Has comprado **${cantidad}** ${product.name}(s) por <:pcb:827581416681898014> **${costoTotal}**!`)
-                    .addFields(
-                        { name: 'Producto', value: product.name, inline: true },
-                        { name: 'Cantidad', value: cantidad.toString(), inline: true },
-                        { name: 'Costo total', value: `<:pcb:827581416681898014> ${costoTotal}`, inline: true }
-                    )
-                    .setTimestamp()
-                    .setFooter({ text: '¡Gracias por tu compra!' });
-
-                await interaction.followUp({ embeds: [embed] });
+                await comprar(product, interaction.followUp.bind(interaction));
             } catch (error) {
                 console.error('Error al guardar el perfil de usuario:', error);
                 await interaction.followUp({ content: `Ocurrió un error al intentar comprar el producto. Error: ${error.message}`, flags: MessageFlags.Ephemeral });

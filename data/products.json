@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "656f2b9bdfbd3196b542074e",
+    "id": "260",
+    "name": "Ryzen 9 7950X",
+    "price": 2130,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "__v": 0,
+    "category": "cpu"
+  },
+  {
+    "_id": "656f2d3fdfbd3196b5420769",
+    "id": "219",
+    "name": "WD Blue SN570 250GB",
+    "price": 165,
+    "imageUrl": "<:SN570:1073778583027339284>",
+    "__v": 0,
+    "category": "storage"
+  },
+  {
+    "_id": "656f2c0edfbd3196b5420757",
+    "id": "933",
+    "name": "Corsair A500",
+    "price": 330,
+    "imageUrl": "<:CorsairA500:1073777986966401124>",
+    "__v": 0,
+    "category": "cooler"
+  },
+  {
+    "_id": "656f2cdddfbd3196b5420760",
+    "id": "474",
+    "name": "Kingston Fury Beast RGB DDR5 8GB 5200MHz",
+    "price": 240,
+    "imageUrl": "<:FuryBeastRGB:1073778076313473025>",
+    "__v": 0,
+    "category": "ram"
+  },
+  {
+    "_id": "656f2ab1dfbd3196b5420744",
+    "id": "151",
+    "name": "Gigabyte X570S Aero G",
+    "price": 900,
+    "imageUrl": "<:GigabyteX570SAeroG:1073777865629372517>",
+    "__v": 0,
+    "category": "motherboard"
+  },
+  {
+    "_id": "656f2e42dfbd3196b542077a",
+    "id": "391",
+    "name": "Corsair RM850x (2021)",
+    "price": 450,
+    "imageUrl": "<:CorsairRM850x:1073779125782847498>",
+    "__v": 0,
+    "category": "psu"
+  },
+  {
+    "_id": "656f2dd9dfbd3196b5420772",
+    "id": "303",
+    "name": "Gigabyte RTX 3060 Eagle OC",
+    "price": 900,
+    "imageUrl": "<:GigabyteRTX3060EagleOC:1181596626045906984>",
+    "__v": 0,
+    "category": "gpu"
+  },
+  {
+    "_id": "69372f663812a2ddeba2be9f",
+    "id": 663,
+    "name": "Antryx Sentry SE",
+    "price": 240,
+    "imageUrl": "<:AntryxCase:1073777713929793558>",
+    "category": "cases",
+    "__v": 0
+  }
+]
