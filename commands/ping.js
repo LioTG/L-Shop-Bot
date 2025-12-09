@@ -1,7 +1,7 @@
 module.exports = {
     data: {
         name: 'ping',
-        description: 'Responde con Pong!',
+        description: 'Respond with Pong!',
     },
 
     run: ({ interaction }) => {

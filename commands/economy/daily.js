@@ -7,7 +7,7 @@ module.exports = {
     run: async ({ interaction }) => {
         if (!interaction.inGuild()) {
             interaction.reply({
-                content: "Este comando solo puede ser ejecutado dentro de un servidor.",
+                content: "This command can only be executed within a server.",
                 ephemeral: true,
             });
             return;
@@ -15,8 +15,11 @@ module.exports = {
         try {
             await interaction.deferReply();
 
+            const guildId = interaction.guild.id;
+
             let userProfile = await UserProfile.findOne({
                 userId: interaction.member.id,
+                guildId,
             });
 
             if (userProfile) {
@@ -26,8 +29,8 @@ module.exports = {
                 if (lastDailyDate === currentDate) {
                     const cooldownEmbed = new EmbedBuilder()
                         .setColor('#FF0000')
-                        .setTitle('Recompensa Diaria')
-                        .setDescription('Ya has reclamado tu recompensa diaria. Vuelve mañana.')
+                        .setTitle('Daily Reward')
+                        .setDescription('You have already claimed your daily reward. Come back tomorrow.')
                         .setTimestamp()
                         .setAuthor({
                             name: interaction.user.username,
@@ -40,6 +43,7 @@ module.exports = {
             } else {
                 userProfile = new UserProfile({
                     userId: interaction.member.id,
+                    guildId,
                 });
             }
 
@@ -50,8 +54,8 @@ module.exports = {
 
             const rewardEmbed = new EmbedBuilder()
                 .setColor('#00FF00')
-                .setTitle('Recompensa Diaria')
-                .setDescription(`<:pcb:827581416681898014> ${dailyAmount} LioCoins fueron añadidos a tu saldo.\nNuevo saldo: <:pcb:827581416681898014> ${userProfile.balance}`)
+                .setTitle('Daily Reward')
+                .setDescription(`<:pcb:827581416681898014> ${dailyAmount} LioCoins were added to your balance.\nNew balance: <:pcb:827581416681898014> ${userProfile.balance}`)
                 .setTimestamp()
                 .setAuthor({
                     name: interaction.user.username,
@@ -63,7 +67,7 @@ module.exports = {
         } catch (error) {
             console.log(`Error handling /daily: ${error}`);
             await interaction.editReply({
-                content: "Ocurrió un error al reclamar tu recompensa diaria.",
+                content: "An error occurred while claiming your daily reward.",
                 ephemeral: true,
             });
         }
@@ -71,6 +75,6 @@ module.exports = {
 
     data: {
         name: 'daily',
-        description: 'Reclama tu recompensa diaria!',
+        description: 'Claim your daily reward!',
     },
 };

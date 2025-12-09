@@ -12,7 +12,7 @@ const loadProductsFromJson = async () => {
         const data = JSON.parse(content);
         return Array.isArray(data) ? data : [];
     } catch (err) {
-        console.error('No se pudo leer data/products.json para autocomplete:', err);
+        console.error('Could not read data/products.json for autocomplete:', err);
         return [];
     }
 };
@@ -25,7 +25,7 @@ const loadProducts = async () => {
         const fromDb = await Product.find().lean();
         return fromDb;
     } catch (err) {
-        console.error('No se pudo leer productos desde Mongo:', err);
+        console.error('Products could not be read from Mongo:', err);
         return [];
     }
 };
@@ -33,23 +33,23 @@ const loadProducts = async () => {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('buy-item')
-        .setDescription('Compra un componente de PC.')
+        .setDescription('Buy a PC component.')
         .addStringOption(option =>
-            option.setName('nombre')
-                .setDescription('Nombre del producto')
+            option.setName('name')
+                .setDescription('Product name to buy')
                 .setAutocomplete(true)
                 .setRequired(true)
         )
         .addIntegerOption(option =>
-            option.setName('cantidad')
-                .setDescription('Cantidad del producto a comprar')
+            option.setName('quantity')
+                .setDescription('Quantity of product to buy')
                 .setRequired(true)
         ),
 
         async autocomplete({ interaction }) {
             try {
                 const focusedOption = interaction.options.getFocused(true);
-                if (focusedOption.name !== 'nombre') return;
+                if (focusedOption.name !== 'name') return;
 
                 const searchQuery = (focusedOption.value || '').toLowerCase();
 
@@ -72,16 +72,22 @@ module.exports = {
         },
 
     async run({ interaction }) {    
+        if (!interaction.inGuild()) {
+            await interaction.reply({ content: 'This command can only be executed within a server.', flags: MessageFlags.Ephemeral });
+            return;
+        }
+
         const userId = interaction.user.id;
-        const nameQuery = interaction.options.getString('nombre');
-        const cantidad = interaction.options.getInteger('cantidad') || 1;
+        const guildId = interaction.guild.id;
+        const nameQuery = interaction.options.getString('name');
+        const cantidad = interaction.options.getInteger('quantity') || 1;
 
-        console.log(`Usuario: ${userId}, Nombre(query): ${nameQuery}, Cantidad: ${cantidad}`);
+        console.log(`User: ${userId}, Name(query): ${nameQuery}, Quantity: ${cantidad}`);
 
-        const userProfile = await UserProfile.findOne({ userId: userId });
+        const userProfile = await UserProfile.findOne({ userId, guildId });
 
         if (!userProfile) {
-            await interaction.reply({ content: 'No tienes un perfil registrado. ¡Regístrate primero!', flags: MessageFlags.Ephemeral });
+            await interaction.reply({ content: 'You dont have a registered profile. Register first!', flags: MessageFlags.Ephemeral });
             return;
         }
 
@@ -90,7 +96,7 @@ module.exports = {
         const comprar = async (product, replyFn) => {
             const costoTotal = product.price * cantidad;
             if (userProfile.balance < costoTotal) {
-                await replyFn({ content: 'No tienes suficiente dinero para comprar estos productos.', flags: MessageFlags.Ephemeral });
+                await replyFn({ content: 'You dont have enough money to buy these products.', flags: MessageFlags.Ephemeral });
                 return;
             }
 
@@ -107,16 +113,16 @@ module.exports = {
             await userProfile.save();
 
             const embed = new EmbedBuilder()
-                .setTitle('Compra exitosa')
+                .setTitle('Successful purchase')
                 .setColor(0x00FF00)
-                .setDescription(`Has comprado **${cantidad}** ${product.name}(s) por <:pcb:827581416681898014> **${costoTotal}**!`)
+                .setDescription(`You have purchased **${cantidad}** ${product.name}(s) for <:pcb:827581416681898014> **${costoTotal}**!`)
                 .addFields(
-                    { name: 'Producto', value: product.name, inline: true },
-                    { name: 'Cantidad', value: cantidad.toString(), inline: true },
-                    { name: 'Costo total', value: `<:pcb:827581416681898014> ${costoTotal}`, inline: true }
+                    { name: 'Product', value: product.name, inline: true },
+                    { name: 'Quantity', value: cantidad.toString(), inline: true },
+                    { name: 'Total cost', value: `<:pcb:827581416681898014> ${costoTotal}`, inline: true }
                 )
                 .setTimestamp()
-                .setFooter({ text: '¡Gracias por tu compra!' });
+                .setFooter({ text: 'Thank you for your purchase!' });
 
             await replyFn({ embeds: [embed] });
         };
@@ -135,20 +141,20 @@ module.exports = {
         const products = await Product.find(nameFilter).sort({ name: 1 }).limit(10);
 
         if (!products.length) {
-            await interaction.reply({ content: `No encontré productos que coincidan con "${nameQuery}".`, flags: MessageFlags.Ephemeral });
+            await interaction.reply({ content: `I found no products that match "${nameQuery}".`, flags: MessageFlags.Ephemeral });
             return;
         }
 
         const listLines = products.map((product, idx) => `**${idx + 1}.** ${product.imageUrl} ${product.name} — <:pcb:827581416681898014> ${product.price}`);
 
         const listEmbed = new EmbedBuilder()
-            .setTitle('Selecciona un producto')
+            .setTitle('Select a product to buy')
             .setDescription(listLines.join('\n'))
             .setColor(0xFFFFFF)
-            .setFooter({ text: 'Escribe el número del producto o "cancel" para cancelar.' });
+            .setFooter({ text: 'Enter the product number or "cancel" to cancel.' });
 
         await interaction.reply({
-            content: `Encontré ${products.length} resultado(s). Escribe el número del producto que quieres comprar (${cantidad} unidad(es)) o "cancel" para cancelar.`,
+            content: `I found ${products.length} result(s). Enter the number of the product you want to buy (${cantidad} unit(s)) or "cancel" to cancel.`,
             embeds: [listEmbed],
         });
 
@@ -156,7 +162,7 @@ module.exports = {
         const collector = interaction.channel?.createMessageCollector({ filter: filterMsg, time: 30_000 });
 
         if (!collector) {
-            await interaction.followUp({ content: 'No pude iniciar el colector de mensajes. Intenta de nuevo.', flags: MessageFlags.Ephemeral });
+            await interaction.followUp({ content: 'I was unable to start the message collector. Please try again.', flags: MessageFlags.Ephemeral });
             return;
         }
 
@@ -164,13 +170,13 @@ module.exports = {
             const content = msg.content.trim().toLowerCase();
             if (content === 'cancel') {
                 collector.stop('cancelled');
-                await interaction.followUp({ content: 'Compra cancelada.', flags: MessageFlags.Ephemeral });
+                await interaction.followUp({ content: 'Purchase cancelled.', flags: MessageFlags.Ephemeral });
                 return;
             }
 
             const choice = parseInt(content, 10);
             if (Number.isNaN(choice) || choice < 1 || choice > products.length) {
-                await interaction.followUp({ content: 'Número inválido. Envía un número de la lista o "cancel".', flags: MessageFlags.Ephemeral });
+                await interaction.followUp({ content: 'Invalid number. Send a number from the list or "cancel".', flags: MessageFlags.Ephemeral });
                 return;
             }
 
@@ -180,14 +186,14 @@ module.exports = {
             try {
                 await comprar(product, interaction.followUp.bind(interaction));
             } catch (error) {
-                console.error('Error al guardar el perfil de usuario:', error);
-                await interaction.followUp({ content: `Ocurrió un error al intentar comprar el producto. Error: ${error.message}`, flags: MessageFlags.Ephemeral });
+                console.error('Error saving user profile:', error);
+                await interaction.followUp({ content: `An error occurred while trying to purchase the product. Error: ${error.message}`, flags: MessageFlags.Ephemeral });
             }
         });
 
         collector.on('end', async (_collected, reason) => {
             if (reason === 'time') {
-                await interaction.followUp({ content: 'Tiempo agotado. Escribe el comando nuevamente para comprar.', flags: MessageFlags.Ephemeral });
+                await interaction.followUp({ content: 'Time expired. Enter the command again to purchase.', flags: MessageFlags.Ephemeral });
             }
         });
     },

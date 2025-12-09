@@ -4,35 +4,39 @@ const UserProfile = require('../../schemas/UserProfile');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('add-money')
-        .setDescription('Añade dinero a un usuario.')
-        .addUserOption(option => option.setName('usuario')
-            .setDescription('El usuario al que se le añadirá dinero')
+        .setDescription('Add money to a user - ADMINS ONLY')
+        .addUserOption(option => option.setName('user')
+            .setDescription('The target user who will receive additional money')
             .setRequired(true))
-        .addIntegerOption(option => option.setName('cantidad')
-            .setDescription('La cantidad de dinero a añadir')
+        .addIntegerOption(option => option.setName('quantity')
+            .setDescription('The amount of money to add')
             .setRequired(true)),
     async run({ interaction }) {
-        // Verifica si el usuario que ejecuta el comando es un administrador
-        if (!interaction.member.permissions.has('ADMINISTRATOR')) {
-            return interaction.reply('Solo los administradores pueden usar este comando.');
+        if (!interaction.inGuild()) {
+            return interaction.reply({
+                content: "This command can only be executed within a server.",
+                ephemeral: true,
+            });
         }
 
-        // Obtén el usuario y la cantidad desde las opciones
-        const user = interaction.options.getUser('usuario');
-        const cantidad = interaction.options.getInteger('cantidad');
+        if (!interaction.member.permissions.has('ADMINISTRATOR')) {
+            return interaction.reply('Only administrators can use this command.');
+        }
 
-        // Obtén el perfil del usuario desde la base de datos
-        const userProfile = await UserProfile.findOne({ userId: user.id });
+        const user = interaction.options.getUser('user');
+        const cantidad = interaction.options.getInteger('quantity');
+        const guildId = interaction.guild.id;
+
+        let userProfile = await UserProfile.findOne({ userId: user.id, guildId });
 
         if (!userProfile) {
-            return interaction.reply(`No se encontró un perfil para el usuario ${user.username}.`);
+            userProfile = new UserProfile({ userId: user.id, guildId });
         }
 
-        // Añade la cantidad de dinero al balance del usuario
         userProfile.balance += cantidad;
 
         await userProfile.save();
 
-        return interaction.reply(`Se añadieron <:pcb:827581416681898014> ${cantidad} a la cuenta de ${user.username}. Nuevo saldo: <:pcb:827581416681898014> ${userProfile.balance}`);
+        return interaction.reply(`<:pcb:827581416681898014> ${cantidad} was added to ${user.username}'s account. New balance: <:pcb:827581416681898014> ${userProfile.balance}`);
     },
 };

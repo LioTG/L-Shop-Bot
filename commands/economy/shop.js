@@ -10,7 +10,7 @@ const { Product } = require('../../schemas/Product');
 const { Category } = require('../../schemas/Category');
 
 const ITEMS_PER_PAGE = 12;
-const SHOP_TITLE = '\uD83D\uDED2 Tienda de componentes de PC';
+const SHOP_TITLE = '\uD83D\uDED2 PC Component Store';
 
 const CATEGORY_EMOJIS = {
   recent: '✨',
@@ -25,21 +25,21 @@ const CATEGORY_EMOJIS = {
 };
 
 const CATEGORY_LABELS = {
-  recent: 'Productos recientes',
+  recent: 'Recent Products',
   cases: 'Cases',
   motherboard: 'Motherboards',
-  cpu: 'Procesadores',
+  cpu: 'CPUs',
   cooler: 'Coolers',
-  ram: 'RAM',
-  storage: 'Almacenamiento',
-  gpu: 'Tarjetas Gráficas',
-  psu: 'Fuente de poder',
+  ram: 'RAMs',
+  storage: 'Storage',
+  gpu: 'GPUs',
+  psu: 'Power Supplies',
 };
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('shop')
-    .setDescription('Explora y compra componentes de PC.'),
+    .setDescription('Explore and buy PC components.'),
 
   async run({ interaction }) {
     await interaction.deferReply();
@@ -47,7 +47,7 @@ module.exports = {
     const allProducts = await Product.find().sort({ _id: -1 });
 
     if (!allProducts.length) {
-      await interaction.editReply({ content: 'La tienda está vacía por el momento.' });
+      await interaction.editReply({ content: 'The store is empty at the moment.' });
       return;
     }
 
@@ -74,7 +74,7 @@ module.exports = {
       if (!products.length) {
         return new EmbedBuilder()
           .setTitle(`${SHOP_TITLE} - ${CATEGORY_LABELS[currentCategory] || currentCategory}`)
-          .setDescription('No hay productos para esta categoría.')
+          .setDescription('There are no products for this category.')
           .setColor('White');
       }
 
@@ -87,13 +87,13 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setTitle(`${SHOP_TITLE} - ${titleSuffix}`)
         .setColor('White')
-        .addFields({ name: '\u200B', value: 'Compra con el comando `/buy-item`.' })
-        .setFooter({ text: `Página ${currentPage + 1} de ${totalPages}` });
+        .addFields({ name: '\u200B', value: 'Purchase using the command `/buy-item`.' })
+        .setFooter({ text: `Page ${currentPage + 1} of ${totalPages}` });
 
       for (const product of pageItems) {
         embed.addFields({
           name: `${product.imageUrl} ${product.name}`,
-          value: `Precio: <:pcb:827581416681898014> ${product.price}`,
+          value: `Price: <:pcb:827581416681898014> ${product.price}`,
           inline: false,
         });
       }
@@ -108,7 +108,7 @@ module.exports = {
       const selectRow = new ActionRowBuilder().addComponents(
         new StringSelectMenuBuilder()
           .setCustomId('shop_category')
-          .setPlaceholder('Selecciona una categoría')
+          .setPlaceholder('Select a category')
           .addOptions(selectOptions)
           .setMinValues(1)
           .setMaxValues(1)
@@ -119,12 +119,12 @@ module.exports = {
         buttonRow.addComponents(
           new ButtonBuilder()
             .setCustomId('shop_prev')
-            .setLabel('Anterior')
+            .setLabel('Previous')
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(currentPage === 0),
           new ButtonBuilder()
             .setCustomId('shop_next')
-            .setLabel('Siguiente')
+            .setLabel('Next')
             .setStyle(ButtonStyle.Primary)
             .setDisabled(currentPage >= totalPages - 1)
         );

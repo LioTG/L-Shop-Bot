@@ -5,7 +5,7 @@ module.exports = {
     run: async ({ interaction }) => {
         if (!interaction.inGuild()) {
             interaction.reply({
-                content: "Este comando solo puede ser ejecutado dentro de un servidor.",
+                content: "This command can only be executed within a server.",
                 ephemeral: true,
             });
             return;
@@ -13,23 +13,24 @@ module.exports = {
 
         const targetUserId = interaction.options.getUser('target-user')?.id || interaction.user.id;
         const targetUser = interaction.options.getUser('target-user') || interaction.user;
+        const guildId = interaction.guild.id;
 
         await interaction.deferReply();
 
         try {
-            let userProfile = await UserProfile.findOne({ userId: targetUserId });
+            let userProfile = await UserProfile.findOne({ userId: targetUserId, guildId });
 
             if (!userProfile) {
-                userProfile = new UserProfile({ userId: targetUserId });
+                userProfile = new UserProfile({ userId: targetUserId, guildId });
             }
 
             const balanceEmbed = new EmbedBuilder()
                 .setColor('#FFFFFF')
-                .setTitle('Saldo')
+                .setTitle('Balance')
                 .setDescription(
                     targetUserId === interaction.user.id 
-                        ? `Tu saldo es de <:pcb:827581416681898014> ${userProfile.balance}` 
-                        : `El saldo de <@${targetUserId}> es de <:pcb:827581416681898014> ${userProfile.balance}`
+                        ? `Your balance is <:pcb:827581416681898014> ${userProfile.balance}` 
+                        : `The balance of <@${targetUserId}> is <:pcb:827581416681898014> ${userProfile.balance}`
                 )
                 .setTimestamp()
                 .setAuthor({
@@ -41,7 +42,7 @@ module.exports = {
         } catch (error) {
             console.error(`Error handling /balance: ${error}`);
             interaction.editReply({
-                content: "Ocurrió un error al obtener el saldo.",
+                content: "An error occurred while retrieving the balance.",
                 ephemeral: true,
             });
         }
@@ -49,11 +50,11 @@ module.exports = {
 
     data: {
         name: 'balance',
-        description: "Revisa tu saldo.",
+        description: "Check your balance.",
         options: [
             {
                 name: 'target-user',
-                description: "El usuario cuyo saldo quieres ver.",
+                description: "The user whose balance you want to see.",
                 type: ApplicationCommandOptionType.User,
             }
         ]

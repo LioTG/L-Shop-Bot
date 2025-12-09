@@ -6,28 +6,34 @@ const { Product } = require('../../schemas/Product');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('sell-item')
-        .setDescription('Vende un componente de PC del inventario.')
+        .setDescription('Sell a PC component from the inventory.')
         .addStringOption(option =>
-            option.setName('nombre')
-                .setDescription('Nombre del producto a vender')
+            option.setName('name')
+                .setDescription('Name of the product to be sold')
                 .setRequired(true)
         )
         .addIntegerOption(option =>
-            option.setName('cantidad')
-                .setDescription('Cantidad del producto a vender')
+            option.setName('quantity')
+                .setDescription('Quantity of product to be sold')
                 .setRequired(true)
         ),
     async run({ interaction }) {
+        if (!interaction.inGuild()) {
+            await interaction.reply({ content: 'This command can only be executed within a server.', ephemeral: true });
+            return;
+        }
+
         const userId = interaction.user.id;
-        const name = interaction.options.getString('nombre');
-        const cantidad = interaction.options.getInteger('cantidad') || 1;
+        const guildId = interaction.guild.id;
+        const name = interaction.options.getString('name');
+        const cantidad = interaction.options.getInteger('quantity') || 1;
 
-        console.log(`Usuario: ${userId}, Nombre: ${name}, Cantidad: ${cantidad}`);
+        console.log(`User: ${userId}, Name: ${name}, Quantity: ${cantidad}`);
 
-        const userProfile = await UserProfile.findOne({ userId: userId });
+        const userProfile = await UserProfile.findOne({ userId, guildId });
 
         if (!userProfile) {
-            await interaction.reply({ content: 'No tienes un perfil registrado. ¡Regístrate primero!', ephemeral: true });
+            await interaction.reply({ content: 'You dont have a registered profile. Register first!', ephemeral: true });
             return;
         }
 
@@ -35,7 +41,7 @@ module.exports = {
         let inventoryItem = userProfile.inventory.find(item => item.name === name);
 
         if (!inventoryItem || inventoryItem.quantity < cantidad) {
-            await interaction.reply({ content: `No tienes suficientes ${name}(s) en tu inventario.`, ephemeral: true });
+            await interaction.reply({ content: `You don't have enough ${name}(s) in your inventory.`, ephemeral: true });
             return;
         }
 
@@ -43,11 +49,11 @@ module.exports = {
         const product = await Product.findOne({ name: name });
 
         if (!product) {
-            await interaction.reply({ content: `No existe un producto con el nombre ${name}.`, ephemeral: true });
+            await interaction.reply({ content: `There is no product with the name ${name}.`, ephemeral: true });
             return;
         }
 
-        const ventaTotal = Math.round(product.price * 0.6 * cantidad); // El usuario obtiene el 60% del precio original por cada unidad vendida
+        const ventaTotal = Math.round(product.price * 0.8 * cantidad); // El usuario obtiene el 80% del precio original por cada unidad vendida
 
         // Actualizar el balance del usuario
         userProfile.balance += ventaTotal;
@@ -63,16 +69,16 @@ module.exports = {
 
             // Crear un mensaje embed para mostrar la información de la venta
             const sellEmbed = new EmbedBuilder()
-                .setTitle(`Venta de ${cantidad} ${name}(s)`)
+                .setTitle(`Sale of ${cantidad} ${name}(s)`)
                 .setColor('#00ff00')
-                .setDescription(`Has vendido ${cantidad} ${name}(s) por <:pcb:827581416681898014> ${ventaTotal}!`)
+                .setDescription(`You have sold ${cantidad} ${name}(s) for <:pcb:827581416681898014> ${ventaTotal}!`)
                 .setTimestamp()
-                .setFooter({ text: '¡Venta exitosa!' });
+                .setFooter({ text: 'Successful sale!' });
 
             await interaction.reply({ embeds: [sellEmbed] });
         } catch (error) {
-            console.error('Error al guardar el perfil de usuario:', error);
-            await interaction.reply({ content: `Ocurrió un error al intentar vender el producto. Error: ${error.message}`, ephemeral: true});
+            console.error('Error saving user profile:', error);
+            await interaction.reply({ content: `An error occurred while trying to sell the product. Error: ${error.message}`, ephemeral: true});
         }
     },
 };

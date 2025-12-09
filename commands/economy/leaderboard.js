@@ -4,20 +4,57 @@ const UserProfile = require('../../schemas/UserProfile');
 
 const LEADERBOARD_PAGE_SIZE = 10;
 
+const formatRankLabel = (position) => {
+    if (position === 1) return '1st place';
+    if (position === 2) return '2nd place';
+    if (position === 3) return '3rd place';
+    return `#${position}`;
+};
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('leaderboard')
-        .setDescription('Muestra el ranking de usuarios por saldo.'),
+        .setDescription('It shows the ranking of users by balance.'),
 
     async run({ interaction }) {
+        if (!interaction.inGuild()) {
+            await interaction.reply({
+                content: "This command can only be executed within a server.",
+                ephemeral: true,
+            });
+            return;
+        }
+
         try {
             await interaction.deferReply();
 
-            const members = await UserProfile.find().sort({ balance: -1 }).limit(50); // Adjust limit as needed
-            let currentPage = 0;
+            const guildId = interaction.guild.id;
 
-            const userIndex = members.findIndex(member => member.userId === interaction.user.id);
-            const userRanking = userIndex !== -1 ? `${userIndex + 1}th` : 'No rank';
+            const [members, totalProfiles, userProfile] = await Promise.all([
+                UserProfile.find({ guildId }).sort({ balance: -1 }).limit(50).lean(),
+                UserProfile.countDocuments({ guildId }),
+                UserProfile.findOne({ userId: interaction.user.id, guildId }).select('balance userId guildId').lean(),
+            ]);
+
+            if (!members.length) {
+                await interaction.editReply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setColor('#FFFFFF')
+                            .setAuthor({ name: 'Leaderboard', iconURL: 'https://cdn-icons-png.flaticon.com/512/3150/3150115.png' })
+                            .setDescription('No players have earned currency yet. Use `/work` to be the first!')
+                            .setTimestamp()
+                    ]
+                });
+                return;
+            }
+
+            const userRanking = userProfile
+                ? (await UserProfile.countDocuments({ guildId, balance: { $gt: userProfile.balance } })) + 1
+                : null;
+
+            let currentPage = 0;
+            const totalPages = Math.max(1, Math.ceil(members.length / LEADERBOARD_PAGE_SIZE));
 
             const generateEmbed = async (page) => {
                 const start = page * LEADERBOARD_PAGE_SIZE;
@@ -26,27 +63,31 @@ module.exports = {
 
                 const leaderboardEmbed = new EmbedBuilder()
                     .setColor('#FFFFFF')
-                    .setAuthor({ name: `Leaderboard`, iconURL: `https://cdn-icons-png.flaticon.com/512/3150/3150115.png`})
+                    .setAuthor({ name: 'Leaderboard', iconURL: 'https://cdn-icons-png.flaticon.com/512/3150/3150115.png' })
                     .setTimestamp();
 
                 for (let i = 0; i < currentMembers.length; i++) {
                     const member = currentMembers[i];
+                    const position = start + i + 1;
                     const user = await interaction.guild.members.fetch(member.userId).catch(() => null);
+                    const displayName = user ? user.user.username : 'Unknown user';
 
-                    if (user) {
-                        leaderboardEmbed.addFields({
-                            name: `${start + i + 1}. ${user.user.username}`,
-                            value: `Saldo: <:pcb:827581416681898014> ${member.balance}`,
-                        });
-                    } else {
-                        leaderboardEmbed.addFields({
-                            name: `${start + i + 1}. Usuario desconocido`,
-                            value: `Saldo: <:pcb:827581416681898014> ${member.balance}`,
-                        });
-                    }
+                    leaderboardEmbed.addFields({
+                        name: `${formatRankLabel(position)} - ${displayName}`,
+                        value: `Balance: <:pcb:827581416681898014> ${member.balance}`,
+                    });
                 }
 
-                leaderboardEmbed.setFooter({ text: `Page ${page + 1}/${Math.ceil(members.length / LEADERBOARD_PAGE_SIZE)}  •  Tu ranking es: ${userRanking}` });
+                if (userRanking && (userRanking <= start || userRanking > end)) {
+                    leaderboardEmbed.addFields({
+                        name: 'Your position',
+                        value: `${formatRankLabel(userRanking)} - ${interaction.user.username}\nBalance: <:pcb:827581416681898014> ${userProfile.balance}`,
+                    });
+                }
+
+                leaderboardEmbed.setFooter({
+                    text: `Page ${page + 1}/${totalPages} | Players: ${totalProfiles} | Your rank: ${userRanking || 'N/A'}`
+                });
 
                 return leaderboardEmbed;
             };
@@ -55,14 +96,14 @@ module.exports = {
                 const row = new ActionRowBuilder().addComponents(
                     new ButtonBuilder()
                         .setCustomId('previous')
-                        .setLabel('Anterior')
+                        .setLabel('Previous')
                         .setStyle(ButtonStyle.Primary)
                         .setDisabled(page === 0),
                     new ButtonBuilder()
                         .setCustomId('next')
-                        .setLabel('Siguiente')
+                        .setLabel('Next')
                         .setStyle(ButtonStyle.Primary)
-                        .setDisabled((page + 1) * LEADERBOARD_PAGE_SIZE >= members.length)
+                        .setDisabled(page + 1 >= totalPages)
                 );
 
                 return row;
@@ -96,7 +137,7 @@ module.exports = {
         } catch (error) {
             console.error(`Error handling /leaderboard: ${error}`);
             await interaction.followUp({
-                content: 'Ocurrió un error al mostrar la leaderboard.',
+                content: 'An error occurred while displaying the leaderboard.',
                 ephemeral: true,
             });
         }

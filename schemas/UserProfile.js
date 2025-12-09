@@ -7,10 +7,13 @@ const InventoryItemSchema = new mongoose.Schema({
 });
 
 const UserProfileSchema = new mongoose.Schema({
-    userId: { type: String, required: true, unique: true },
+    userId: { type: String, required: true },
+    guildId: { type: String, required: true },
     balance: { type: Number, required: true, default: 0 },
     inventory: { type: [InventoryItemSchema], default: [] },
     lastDailyCollected: { type: Date }
 });
+
+UserProfileSchema.index({ userId: 1, guildId: 1 }, { unique: true });
 
 module.exports = mongoose.model('UserProfile', UserProfileSchema);

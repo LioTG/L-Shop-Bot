@@ -6,15 +6,21 @@ const { Product } = require('../../schemas/Product');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('inv')
-        .setDescription('Muestra tu inventario de componentes de PC.'),
+        .setDescription('Show your inventory of PC components.'),
     async run({ interaction }) {
-        const { user } = interaction;
+        if (!interaction.inGuild()) {
+            await interaction.reply({ content: 'This command can only be executed within a server.', ephemeral: true });
+            return;
+        }
 
-        // Obtén el perfil del usuario desde la base de datos
-        const userProfile = await UserProfile.findOne({ userId: user.id });
+        const { user } = interaction;
+        const guildId = interaction.guild.id;
+
+        // ObtAcn el perfil del usuario desde la base de datos
+        const userProfile = await UserProfile.findOne({ userId: user.id, guildId });
 
         if (!userProfile) {
-            await interaction.reply({ content: 'No tienes un perfil registrado. ¡Regístrate primero!', ephemeral: true });
+            await interaction.reply({ content: 'You dont have a registered profile. Register first!', ephemeral: true });
             return;
         }
 
@@ -22,7 +28,7 @@ module.exports = {
         const inventory = userProfile.inventory;
 
         if (!inventory || inventory.length === 0) {
-            await interaction.reply({ content: 'Tu inventario está vacío.', ephemeral: true });
+            await interaction.reply({ content: 'Your inventory is empty.', ephemeral: true });
             return;
         }
 
@@ -55,7 +61,7 @@ module.exports = {
             const pageItems = aggregatedInventory.slice(start, end);
 
             const inventoryEmbed = new EmbedBuilder()
-                .setTitle(`🎒 Inventario de ${user.username} 🎒`)
+                .setTitle(`dYZ' Inventory of ${user.username} dYZ'`)
                 .setColor(0xFFFFFF);
 
             for (const item of pageItems) {
@@ -63,19 +69,19 @@ module.exports = {
                 if (product) {
                     inventoryEmbed.addFields({
                         name: `${product.imageUrl} ${product.name}`,
-                        value: `Cantidad: ${item.quantity}`,
+                        value: `Quantity: ${item.quantity}`,
                         inline: false,
                     });
                 } else {
                     inventoryEmbed.addFields({
-                        name: 'Producto desconocido',
-                        value: `Categoría: ${item.category} | Nombre: ${item.name} | Cantidad: ${item.quantity}`,
+                        name: 'Unknown product',
+                        value: `Category: ${item.category} | Name: ${item.name} | Quantity: ${item.quantity}`,
                         inline: false,
                     });
                 }
             }
 
-            inventoryEmbed.setFooter({ text: `Página ${page} de ${totalPages} | Total de ítems: ${totalItems}` });
+            inventoryEmbed.setFooter({ text: `Page ${page} of ${totalPages} | Total items: ${totalItems}` });
 
             return inventoryEmbed;
         };
@@ -87,7 +93,7 @@ module.exports = {
                 actionRow.addComponents(
                     new ButtonBuilder()
                         .setCustomId('prev')
-                        .setLabel('Anterior')
+                        .setLabel('Previous')
                         .setStyle(ButtonStyle.Primary)
                 );
             }
@@ -96,7 +102,7 @@ module.exports = {
                 actionRow.addComponents(
                     new ButtonBuilder()
                         .setCustomId('next')
-                        .setLabel('Siguiente')
+                        .setLabel('Next')
                         .setStyle(ButtonStyle.Primary)
                 );
             }
