@@ -61,7 +61,7 @@ module.exports = {
             const pageItems = aggregatedInventory.slice(start, end);
 
             const inventoryEmbed = new EmbedBuilder()
-                .setTitle(`dYZ' Inventory of ${user.username} dYZ'`)
+                .setTitle(`🎒 Inventory of ${user.username}`)
                 .setColor(0xFFFFFF);
 
             for (const item of pageItems) {

@@ -5,6 +5,7 @@
     "name": "Ryzen 9 7950X",
     "price": 2130,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
     "__v": 0,
     "category": "cpu"
   },
@@ -32,6 +33,7 @@
     "name": "Kingston Fury Beast RGB DDR5 8GB 5200MHz",
     "price": 240,
     "imageUrl": "<:FuryBeastRGB:1073778076313473025>",
+    "ramType": "DDR5",
     "__v": 0,
     "category": "ram"
   },
@@ -41,6 +43,9 @@
     "name": "Gigabyte X570S Aero G",
     "price": 900,
     "imageUrl": "<:GigabyteX570SAeroG:1073777865629372517>",
+    "socket": "AM4",
+    "ramType": "DDR4",
+    "ramSlots": 4,
     "__v": 0,
     "category": "motherboard"
   },
@@ -69,6 +74,189 @@
     "price": 240,
     "imageUrl": "<:AntryxCase:1073777713929793558>",
     "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "6939b5735b684ae4fa0ecebf",
+    "id": 706,
+    "name": "WD Blue SN570 500GB",
+    "price": 300,
+    "imageUrl": "<:SN570:1073778583027339284>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939b59f5b684ae4fa0ecec4",
+    "id": 655,
+    "name": "WD Blue SN570 1TB",
+    "price": 410,
+    "imageUrl": "<:SN570:1073778583027339284>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939b5b45b684ae4fa0ecec9",
+    "id": 946,
+    "name": "WD Blue SN570 2TB",
+    "price": 570,
+    "imageUrl": "<:SN570:1073778583027339284>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939b6225b684ae4fa0eced0",
+    "id": 826,
+    "name": "Ryzen 9 7900X",
+    "price": 1680,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b6395b684ae4fa0eced5",
+    "id": 907,
+    "name": "Ryzen 7 7700X",
+    "price": 1260,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b6515b684ae4fa0eceda",
+    "id": 356,
+    "name": "Ryzen 5 7600X",
+    "price": 960,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b6665b684ae4fa0ecedf",
+    "id": 163,
+    "name": "Ryzen 5 7600",
+    "price": 720,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b67c5b684ae4fa0ecee4",
+    "id": 11,
+    "name": "Ryzen 7 7700",
+    "price": 1020,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b6935b684ae4fa0ecee9",
+    "id": 14,
+    "name": "Ryzen 9 7900",
+    "price": 1320,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b6a65b684ae4fa0eceee",
+    "id": 900,
+    "name": "Ryzen 7 7800X3D",
+    "price": 1380,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b6ba5b684ae4fa0ecef3",
+    "id": 22,
+    "name": "Ryzen 9 7900X3D",
+    "price": 1620,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b6d35b684ae4fa0ecef8",
+    "id": 100,
+    "name": "Ryzen 9 7950X3D",
+    "price": 1860,
+    "imageUrl": "<:Ryzen7000:1073777217294839818>",
+    "socket": "AM5",
+    "category": "cpu",
+    "__v": 0
+  },
+  {
+    "_id": "6939b71a5b684ae4fa0ecf02",
+    "id": 568,
+    "name": "Seagate Barracuda 500GB",
+    "price": 90,
+    "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939b73b5b684ae4fa0ecf07",
+    "id": 785,
+    "name": "Seagate Barracuda 1TB",
+    "price": 130,
+    "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939b7565b684ae4fa0ecf0c",
+    "id": 12,
+    "name": "Seagate Barracuda 2TB",
+    "price": 170,
+    "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939b76a5b684ae4fa0ecf11",
+    "id": 837,
+    "name": "Seagate Barracuda 3TB",
+    "price": 230,
+    "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939b7865b684ae4fa0ecf16",
+    "id": 466,
+    "name": "Seagate Barracuda 4TB",
+    "price": 310,
+    "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939b79b5b684ae4fa0ecf1b",
+    "id": 633,
+    "name": "Seagate Barracuda 6TB",
+    "price": 460,
+    "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
+    "category": "storage",
+    "__v": 0
+  },
+  {
+    "_id": "6939ba775b684ae4fa0ecf2c",
+    "id": 55,
+    "name": "ASUS Prime B650M-A II-CSM",
+    "price": 550,
+    "imageUrl": "<:AsusPrimeB650MAIICSM:1448379307218047128>",
+    "socket": "AM5",
+    "ramType": "DDR5",
+    "ramSlots": 4,
+    "category": "motherboard",
     "__v": 0
   }
 ]

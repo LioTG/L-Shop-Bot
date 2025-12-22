@@ -5,35 +5,50 @@ const { Category } = require('../../schemas/Category');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('add-product')
-        .setDescription('Añade un producto a la tienda.')
+        .setDescription('Add a product to the store.')
         .addStringOption(option => option.setName('categoria')
-            .setDescription('Categoría del producto')
+            .setDescription('Product category')
             .setRequired(true)
             .addChoices(
                 { name: 'Cases', value: 'cases' },
                 { name: 'Motherboards', value: 'motherboard' },
-                { name: 'Procesadores', value: 'cpu' },
+                { name: 'Processors', value: 'cpu' },
                 { name: 'Coolers', value: 'cooler' },
                 { name: 'RAM', value: 'ram' },
-                { name: 'Almacenamiento', value: 'storage' },
-                { name: 'Tarjetas Gráficas', value: 'gpu' },
-                { name: 'Fuente de poder', value: 'psu' },
+                { name: 'Storage', value: 'storage' },
+                { name: 'GPUs', value: 'gpu' },
+                { name: 'Power supplies', value: 'psu' },
             ))
         .addStringOption(option => option.setName('nombre')
-            .setDescription('Nombre del producto')
+            .setDescription('Product name')
             .setRequired(true))
         .addStringOption(option => option.setName('emoji')
-            .setDescription('ID del emoji')
+            .setDescription('Emoji ID')
             .setRequired(true))
         .addIntegerOption(option => option.setName('precio')
-            .setDescription('Precio del producto')
-            .setRequired(true)),
+            .setDescription('Product price')
+            .setRequired(true))
+        .addStringOption(option => option.setName('socket')
+            .setDescription('Socket (CPUs and motherboards only)')
+            .setRequired(false))
+        .addStringOption(option => option.setName('ramtype')
+            .setDescription('RAM type (RAM and motherboards only)')
+            .setRequired(false))
+        .addIntegerOption(option => option.setName('ramslots')
+            .setDescription('RAM slots (motherboards only)')
+            .setRequired(false)),
 
     async run({ interaction }) {
         const categoryId = interaction.options.getString('categoria');
         const name = interaction.options.getString('nombre');
         const price = interaction.options.getInteger('precio');
         const imageUrl = interaction.options.getString('emoji');
+        const socketRaw = interaction.options.getString('socket');
+        const ramTypeRaw = interaction.options.getString('ramtype');
+        const ramSlotsRaw = interaction.options.getInteger('ramslots');
+        const socket = socketRaw ? socketRaw.toUpperCase() : undefined;
+        const ramType = ramTypeRaw ? ramTypeRaw.toUpperCase() : undefined;
+        const ramSlots = Number.isFinite(ramSlotsRaw) ? ramSlotsRaw : undefined;
 
         await interaction.deferReply();
 
@@ -41,34 +56,39 @@ module.exports = {
             let product = await Product.findOne({ name: name });
 
             if (!product) {
-                product = new Product({ 
-                    id: Math.floor(Math.random() * 1000) + 1, 
-                    name: name, 
-                    price: price, 
-                    imageUrl: imageUrl, 
-                    category: categoryId 
+                product = new Product({
+                    id: Math.floor(Math.random() * 1000) + 1,
+                    name: name,
+                    price: price,
+                    imageUrl: imageUrl,
+                    category: categoryId,
+                    socket: ['cpu', 'motherboard'].includes(categoryId) ? socket : undefined,
+                    ramType: ['ram', 'motherboard'].includes(categoryId) ? ramType : undefined,
+                    ramSlots: categoryId === 'motherboard' ? ramSlots : undefined
                 });
 
                 let category = await Category.findOne({ name: categoryId });
                 if (!category) {
-                    category = new Category({ 
-                        id: Math.floor(Math.random() * 1000) + 1000, 
-                        name: categoryId, 
-                        products: [] 
+                    category = new Category({
+                        id: Math.floor(Math.random() * 1000) + 1000,
+                        name: categoryId,
+                        products: []
                     });
                 }
 
                 category.products.push(product._id);
 
-                await category.save();
-                await product.save();
-                await interaction.editReply({ content: `${imageUrl} ${name} de la categoría ${categoryId} ha sido creado con un precio de <:pcb:827581416681898014> ${price}` });
+                await Promise.all([category.save(), product.save()]);
+                const socketMsg = socket && ['cpu', 'motherboard'].includes(categoryId) ? ` | Socket: ${socket}` : '';
+                const ramMsg = ramType && ['ram', 'motherboard'].includes(categoryId) ? ` | RAM: ${ramType}` : '';
+                const slotsMsg = ramSlots && categoryId === 'motherboard' ? ` | RAM slots: ${ramSlots}` : '';
+                await interaction.editReply({ content: `${imageUrl} ${name} in category ${categoryId} was created for <:pcb:827581416681898014> ${price}${socketMsg}${ramMsg}${slotsMsg}` });
             } else {
-                await interaction.editReply({ content: "Ya existe un producto con ese nombre", ephemeral: true });
+                await interaction.editReply({ content: 'A product with that name already exists.', ephemeral: true });
             }
         } catch (error) {
-            console.error('Error al crear el producto:', error);
-            await interaction.editReply({ content: 'Ocurrió un error al intentar crear el producto.', ephemeral: true });
+            console.error('Error creating product:', error);
+            await interaction.editReply({ content: 'An error occurred while creating the product.', ephemeral: true });
         }
     }
 };

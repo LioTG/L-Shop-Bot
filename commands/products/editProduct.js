@@ -4,35 +4,64 @@ const { Product } = require('../../schemas/Product');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('edit-product')
-    .setDescription('Edita un producto en la tienda.')
+    .setDescription('Edit a product in the store.')
     .addStringOption(option => option.setName('nombre')
-      .setDescription('Nombre del producto a editar')
+      .setDescription('Product name to edit')
       .setRequired(true))
     .addIntegerOption(option => option.setName('nuevoprecio')
-      .setDescription('Nuevo precio del producto')
-      .setRequired(true)),
+      .setDescription('New product price')
+      .setRequired(true))
+    .addStringOption(option => option.setName('socket')
+      .setDescription('New socket (CPU/Motherboard only)')
+      .setRequired(false))
+    .addStringOption(option => option.setName('ramtype')
+      .setDescription('New RAM type (RAM/Motherboard only)')
+      .setRequired(false))
+    .addIntegerOption(option => option.setName('ramslots')
+      .setDescription('New RAM slots (Motherboard only)')
+      .setRequired(false)),
 
   async run({ interaction }) {
     const name = interaction.options.getString('nombre');
     const newPrice = interaction.options.getInteger('nuevoprecio');
+    const socketRaw = interaction.options.getString('socket');
+    const ramTypeRaw = interaction.options.getString('ramtype');
+    const ramSlotsRaw = interaction.options.getInteger('ramslots');
+    const socket = socketRaw ? socketRaw.toUpperCase() : undefined;
+    const ramType = ramTypeRaw ? ramTypeRaw.toUpperCase() : undefined;
+    const ramSlots = Number.isFinite(ramSlotsRaw) ? ramSlotsRaw : undefined;
 
     await interaction.deferReply();
 
     try {
+      const setData = { price: newPrice };
+      if (socket) {
+        setData.socket = socket;
+      }
+      if (ramType) {
+        setData.ramType = ramType;
+      }
+      if (ramSlots !== undefined) {
+        setData.ramSlots = ramSlots;
+      }
+
       const product = await Product.findOneAndUpdate(
         { name: name },
-        { $set: { price: newPrice } },
+        { $set: setData },
         { new: true }
       );
 
       if (product) {
-        await interaction.editReply({ content: `${name} ha sido editado. Nuevo precio: <:pcb:827581416681898014> ${newPrice}` });
+        const socketMsg = socket ? ` | Socket: ${socket}` : '';
+        const ramMsg = ramType ? ` | RAM: ${ramType}` : '';
+        const slotsMsg = ramSlots !== undefined ? ` | RAM slots: ${ramSlots}` : '';
+        await interaction.editReply({ content: `${name} updated. New price: <:pcb:827581416681898014> ${newPrice}${socketMsg}${ramMsg}${slotsMsg}` });
       } else {
-        await interaction.editReply({ content: `No se encontró un producto con el nombre ${name}.`, ephemeral: true });
+        await interaction.editReply({ content: `No product found with name ${name}.`, ephemeral: true });
       }
     } catch (error) {
       console.error(error);
-      await interaction.editReply({ content: 'Hubo un error al intentar editar el producto.', ephemeral: true });
+      await interaction.editReply({ content: 'There was an error while editing the product.', ephemeral: true });
     }
   },
 };
