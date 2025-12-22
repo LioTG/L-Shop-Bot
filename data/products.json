@@ -1,17 +1,17 @@
 [
   {
     "_id": "656f2b9bdfbd3196b542074e",
-    "id": "260",
+    "id": 260,
     "name": "Ryzen 9 7950X",
     "price": 2130,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "__v": 0,
-    "category": "cpu"
+    "category": "cpu",
+    "socket": "AM5"
   },
   {
     "_id": "656f2d3fdfbd3196b5420769",
-    "id": "219",
+    "id": 219,
     "name": "WD Blue SN570 250GB",
     "price": 165,
     "imageUrl": "<:SN570:1073778583027339284>",
@@ -20,7 +20,7 @@
   },
   {
     "_id": "656f2c0edfbd3196b5420757",
-    "id": "933",
+    "id": 933,
     "name": "Corsair A500",
     "price": 330,
     "imageUrl": "<:CorsairA500:1073777986966401124>",
@@ -29,29 +29,29 @@
   },
   {
     "_id": "656f2cdddfbd3196b5420760",
-    "id": "474",
+    "id": 474,
     "name": "Kingston Fury Beast RGB DDR5 8GB 5200MHz",
     "price": 240,
     "imageUrl": "<:FuryBeastRGB:1073778076313473025>",
-    "ramType": "DDR5",
     "__v": 0,
-    "category": "ram"
+    "category": "ram",
+    "ramType": "DDR5"
   },
   {
     "_id": "656f2ab1dfbd3196b5420744",
-    "id": "151",
+    "id": 151,
     "name": "Gigabyte X570S Aero G",
     "price": 900,
     "imageUrl": "<:GigabyteX570SAeroG:1073777865629372517>",
-    "socket": "AM4",
-    "ramType": "DDR4",
-    "ramSlots": 4,
     "__v": 0,
-    "category": "motherboard"
+    "category": "motherboard",
+    "ramSlots": 4,
+    "ramType": "DDR4",
+    "socket": "AM4"
   },
   {
     "_id": "656f2e42dfbd3196b542077a",
-    "id": "391",
+    "id": 391,
     "name": "Corsair RM850x (2021)",
     "price": 450,
     "imageUrl": "<:CorsairRM850x:1073779125782847498>",
@@ -60,7 +60,7 @@
   },
   {
     "_id": "656f2dd9dfbd3196b5420772",
-    "id": "303",
+    "id": 303,
     "name": "Gigabyte RTX 3060 Eagle OC",
     "price": 900,
     "imageUrl": "<:GigabyteRTX3060EagleOC:1181596626045906984>",
@@ -109,9 +109,9 @@
     "name": "Ryzen 9 7900X",
     "price": 1680,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b6395b684ae4fa0eced5",
@@ -119,9 +119,9 @@
     "name": "Ryzen 7 7700X",
     "price": 1260,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b6515b684ae4fa0eceda",
@@ -129,9 +129,9 @@
     "name": "Ryzen 5 7600X",
     "price": 960,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b6665b684ae4fa0ecedf",
@@ -139,9 +139,9 @@
     "name": "Ryzen 5 7600",
     "price": 720,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b67c5b684ae4fa0ecee4",
@@ -149,9 +149,9 @@
     "name": "Ryzen 7 7700",
     "price": 1020,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b6935b684ae4fa0ecee9",
@@ -159,9 +159,9 @@
     "name": "Ryzen 9 7900",
     "price": 1320,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b6a65b684ae4fa0eceee",
@@ -169,9 +169,9 @@
     "name": "Ryzen 7 7800X3D",
     "price": 1380,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b6ba5b684ae4fa0ecef3",
@@ -179,9 +179,9 @@
     "name": "Ryzen 9 7900X3D",
     "price": 1620,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b6d35b684ae4fa0ecef8",
@@ -189,9 +189,9 @@
     "name": "Ryzen 9 7950X3D",
     "price": 1860,
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
-    "socket": "AM5",
     "category": "cpu",
-    "__v": 0
+    "__v": 0,
+    "socket": "AM5"
   },
   {
     "_id": "6939b71a5b684ae4fa0ecf02",
@@ -253,10 +253,621 @@
     "name": "ASUS Prime B650M-A II-CSM",
     "price": 550,
     "imageUrl": "<:AsusPrimeB650MAIICSM:1448379307218047128>",
+    "category": "motherboard",
+    "__v": 0,
+    "ramSlots": 4,
+    "ramType": "DDR5",
+    "socket": "AM5"
+  },
+  {
+    "_id": "69497c3bdb1137eff0c7192a",
+    "id": 248,
+    "name": "Ryzen 5 5600X",
+    "price": 750,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "socket": "AM4",
+    "__v": 0
+  },
+  {
+    "_id": "69497c59db1137eff0c7192f",
+    "id": 314,
+    "name": "Ryzen 7 5800X",
+    "price": 1100,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "__v": 0,
+    "socket": "AM4"
+  },
+  {
+    "_id": "69497c9adb1137eff0c71937",
+    "id": 807,
+    "name": "Ryzen 9 5900X",
+    "price": 1480,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "socket": "AM4",
+    "__v": 0
+  },
+  {
+    "_id": "69497cbbdb1137eff0c7193c",
+    "id": 552,
+    "name": "Ryzen 9 5950X",
+    "price": 1600,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "socket": "AM4",
+    "__v": 0
+  },
+  {
+    "_id": "69497dc2db1137eff0c71942",
+    "id": 385,
+    "name": "Ryzen 5 5500",
+    "price": 510,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "socket": "AM4",
+    "__v": 0
+  },
+  {
+    "_id": "69497de6db1137eff0c71947",
+    "id": 658,
+    "name": "Ryzen 5 5600",
+    "price": 630,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "socket": "AM4",
+    "__v": 0
+  },
+  {
+    "_id": "69497df9db1137eff0c7194c",
+    "id": 212,
+    "name": "Ryzen 7 5700X",
+    "price": 930,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "socket": "AM4",
+    "__v": 0
+  },
+  {
+    "_id": "69497e11db1137eff0c71951",
+    "id": 689,
+    "name": "Ryzen 7 5800X3D",
+    "price": 1380,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "socket": "AM4",
+    "__v": 0
+  },
+  {
+    "_id": "69497e3cdb1137eff0c71956",
+    "id": 89,
+    "name": "Ryzen 5 5600X3D",
+    "price": 840,
+    "imageUrl": "<:Ryzen5000:1452700478721888327>",
+    "category": "cpu",
+    "socket": "AM4",
+    "__v": 0
+  },
+  {
+    "_id": "69497ea4db1137eff0c7195d",
+    "id": 553,
+    "name": "Kingston Fury Beast RGB DDR5 8GB 5600MHz",
+    "price": 320,
+    "imageUrl": "<:FuryBeastRGB:1073778076313473025>",
+    "category": "ram",
+    "ramType": "DDR5",
+    "__v": 0
+  },
+  {
+    "_id": "69497ecedb1137eff0c71962",
+    "id": 516,
+    "name": "Kingston Fury Beast RGB DDR5 16GB 6000MHz",
+    "price": 550,
+    "imageUrl": "<:FuryBeastRGB:1073778076313473025>",
+    "category": "ram",
+    "ramType": "DDR5",
+    "__v": 0
+  },
+  {
+    "_id": "69497fdedb1137eff0c7196a",
+    "id": 156,
+    "name": "Lian Li LANCOOL II Mesh RGB",
+    "price": 390,
+    "imageUrl": "<:LianLiLancoolIIMeshRGB:1452713986075398285>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "69497ffadb1137eff0c7196f",
+    "id": 249,
+    "name": "ASUS ROG Strix Helios",
+    "price": 540,
+    "imageUrl": "<:AsusROGStrixHelios:1452714086096703619>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "69498009db1137eff0c71974",
+    "id": 435,
+    "name": "ASUS ROG Strix Helios White",
+    "price": 580,
+    "imageUrl": "<:AsusROGStrixHeliosWhiteEdition:1452714133123498238>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "69498055db1137eff0c7197a",
+    "id": 676,
+    "name": "Corsair iCUE 4000X RGB",
+    "price": 480,
+    "imageUrl": "<:CorsairiCUE4000XRGB:1452714228703297607>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "69498073db1137eff0c7197f",
+    "id": 656,
+    "name": "Corsair iCUE 4000X RGB White",
+    "price": 520,
+    "imageUrl": "<:CorsairiCUE4000XRGBWhite:1452714251486630039>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "6949809cdb1137eff0c71985",
+    "id": 608,
+    "name": "ASUS TUF Gaming GT301",
+    "price": 390,
+    "imageUrl": "<:AsusTUFGamingGT301:1452714174911086733>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "694980e4db1137eff0c71991",
+    "id": 940,
+    "name": "Thermaltake Divider 300 TG Black",
+    "price": 360,
+    "imageUrl": "<:ThermaltakeDivider300TGBlack:1452714324891271240>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "694980ffdb1137eff0c71996",
+    "id": 137,
+    "name": "Thermaltake Divider 300 TG Snow",
+    "price": 400,
+    "imageUrl": "<:ThermaltakeDivider300TGSnow:1452714346944925830>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "6949812cdb1137eff0c7199b",
+    "id": 347,
+    "name": "Antec DF600 Flux",
+    "price": 300,
+    "imageUrl": "<:AntecDF600Flux:1452715887508455647>",
+    "category": "cases",
+    "__v": 0
+  },
+  {
+    "_id": "694983f0db1137eff0c719a4",
+    "id": 927,
+    "name": "be quiet! Dark Rock Slim",
+    "price": 220,
+    "imageUrl": "<:bequietDarkRockSlim:1452718267117469786>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "6949841ddb1137eff0c719a9",
+    "id": 629,
+    "name": "Cooler Master MasterAir MA624 Stealth",
+    "price": 400,
+    "imageUrl": "<:CoolerMasterMasterAirMA624Stealt:1452718339565551616>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "6949842edb1137eff0c719ae",
+    "id": 185,
+    "name": "Antryx Mirage 510",
+    "price": 150,
+    "imageUrl": "<:AntryxMirage510:1452718400672370759>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "6949844cdb1137eff0c719b3",
+    "id": 779,
+    "name": "Gigabyte AORUS WaterForce X 240",
+    "price": 570,
+    "imageUrl": "<:GigabyteAORUSWaterForceX240:1452718526669394045>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "69498476db1137eff0c719b8",
+    "id": 896,
+    "name": "Gigabyte AORUS WaterForce X 360",
+    "price": 1300,
+    "imageUrl": "<:GigabyteAORUSWaterForceX360:1452718575423852595>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "694984d3db1137eff0c719c5",
+    "id": 840,
+    "name": "Corsair iCUE H100i Elite Capellix XT",
+    "price": 620,
+    "imageUrl": "<:CorsairiCUEH100iEliteCapellixXT:1452718649654644878>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "694984e4db1137eff0c719ca",
+    "id": 760,
+    "name": "Corsair iCUE H100i Elite Capellix XT White",
+    "price": 650,
+    "imageUrl": "<:CorsairiCUEH100iEliteCapellixXTW:1452718701156499517>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "69498506db1137eff0c719cf",
+    "id": 951,
+    "name": "Corsair iCUE H150i Elite Capellix XT",
+    "price": 950,
+    "imageUrl": "<:CorsairiCUEH150iEliteCapellixXT:1452718727899648162>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "694985f6db1137eff0c719db",
+    "id": 140,
+    "name": "Corsair iCUE H150i Elite Capellix XT White",
+    "price": 980,
+    "imageUrl": "<:CorsairiCUEH150iEliteCapellixXTW:1452718745809060124>",
+    "category": "cooler",
+    "__v": 0
+  },
+  {
+    "_id": "694986dcdb1137eff0c719e0",
+    "id": 316,
+    "name": "Gigabyte AORUS X570I Pro WiFi",
+    "price": 620,
+    "imageUrl": "<:GigabyteX570IAORUSPROWIFI:1452721543766605895>",
+    "category": "motherboard",
+    "__v": 0,
+    "ramSlots": 2,
+    "ramType": "DDR4",
+    "socket": "AM4"
+  },
+  {
+    "_id": "69498706db1137eff0c719e5",
+    "id": 45,
+    "name": "ASRock X570M Pro4",
+    "price": 700,
+    "imageUrl": "<:ASRockX570MPro4:1452721613408833647>",
+    "category": "motherboard",
+    "__v": 0,
+    "ramSlots": 4,
+    "ramType": "DDR4",
+    "socket": "AM4"
+  },
+  {
+    "_id": "69498732db1137eff0c719ea",
+    "id": 463,
+    "name": "MSI MEG X570 Unify",
+    "price": 920,
+    "imageUrl": "<:MSIMEGX570Unify:1452721650272567357>",
+    "category": "motherboard",
+    "socket": "AM4",
+    "ramType": "DDR4",
+    "ramSlots": 4,
+    "__v": 0
+  },
+  {
+    "_id": "69498786db1137eff0c719f1",
+    "id": 177,
+    "name": "Gigabyte B550M Gaming",
+    "price": 330,
+    "imageUrl": "<:GigabyteB550MGaming:1452721804912103526>",
+    "category": "motherboard",
+    "socket": "AM4",
+    "ramType": "DDR4",
+    "ramSlots": 2,
+    "__v": 0
+  },
+  {
+    "_id": "69498836db1137eff0c719fb",
+    "id": 992,
+    "name": "ASRock B550 Phantom Gaming-ITX/ax",
+    "price": 480,
+    "imageUrl": "<:ASRockB550PhantomGamingITXax:1452721767326945290>",
+    "category": "motherboard",
+    "socket": "AM4",
+    "ramType": "DDR4",
+    "ramSlots": 2,
+    "__v": 0
+  },
+  {
+    "_id": "69498876db1137eff0c71a00",
+    "id": 781,
+    "name": "ASUS Prime A520M-A",
+    "price": 240,
+    "imageUrl": "<:ASUSPrimeA520MA:1452721787417792523>",
+    "category": "motherboard",
+    "socket": "AM4",
+    "ramType": "DDR4",
+    "ramSlots": 4,
+    "__v": 0
+  },
+  {
+    "_id": "694988a4db1137eff0c71a05",
+    "id": 204,
+    "name": "MSI MPG B550 Gaming Plus",
+    "price": 500,
+    "imageUrl": "<:MSIMPGB550GamingPlus:1452721833647411377>",
+    "category": "motherboard",
+    "socket": "AM4",
+    "ramType": "DDR4",
+    "ramSlots": 4,
+    "__v": 0
+  },
+  {
+    "_id": "69498913db1137eff0c71a0c",
+    "id": 845,
+    "name": "ASUS ROG Strix X670E-E Gaming WiFi",
+    "price": 1400,
+    "imageUrl": "<:AsusROGStrixX670EEGamingWiFi:1452721945463488613>",
+    "category": "motherboard",
     "socket": "AM5",
     "ramType": "DDR5",
     "ramSlots": 4,
-    "category": "motherboard",
+    "__v": 0
+  },
+  {
+    "_id": "69498aa7db1137eff0c71a1b",
+    "id": 811,
+    "name": "MSI GTX 1650 Ventus XS OC",
+    "price": 400,
+    "imageUrl": "<:MSIGTX1650VentusXSOC:1452724693017690265>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498ac4db1137eff0c71a20",
+    "id": 265,
+    "name": "MSI GTX 1650 Super Gaming X",
+    "price": 520,
+    "imageUrl": "<:MSIGTX1650SuperGamingX:1452724738152468582>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498adedb1137eff0c71a25",
+    "id": 464,
+    "name": "MSI GTX 1660 Super Gaming X",
+    "price": 600,
+    "imageUrl": "<:MSIGTX1660SuperGamingX:1452724759488888963>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498b13db1137eff0c71a2a",
+    "id": 262,
+    "name": "MSI RTX 3060 Ti Gaming X Trio",
+    "price": 1200,
+    "imageUrl": "<:MSIRTX3060TiGamingXTrio:1452724825733861580>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498b3adb1137eff0c71a2f",
+    "id": 139,
+    "name": "Gigabyte RTX 3070 Vision OC",
+    "price": 1500,
+    "imageUrl": "<:GigabyteRTX3070VisionOC:1452724881430020148>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498ba2db1137eff0c71a34",
+    "id": 10,
+    "name": "Gigabyte AORUS RTX 3090 Xtreme",
+    "price": 4050,
+    "imageUrl": "<:AORUSRTX3090Xtreme24G:1452724905098481906>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498bc5db1137eff0c71a3c",
+    "id": 707,
+    "name": "ASUS TUF Gaming RTX 3070 Ti OC",
+    "price": 1750,
+    "imageUrl": "<:ASUSTUFGamingRTX3070TiOC:1452724969883697293>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498bebdb1137eff0c71a41",
+    "id": 439,
+    "name": "MSI RTX 3080 Ti Ventus 3X OC",
+    "price": 2780,
+    "imageUrl": "<:MSIRTX3080TiVentus3XOC:1452724990460821707>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498c1bdb1137eff0c71a4b",
+    "id": 48,
+    "name": "Gigabyte RTX 4070 Gaming OC",
+    "price": 1900,
+    "imageUrl": "<:GigabyteRTX4070GamingOC:1452725070970486866>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498c3edb1137eff0c71a55",
+    "id": 967,
+    "name": "ASRock RX 5500 XT Challenger D 4G OC",
+    "price": 550,
+    "imageUrl": "<:ASRockRX5500XTChallengerD4GOC:1452725316127821976>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498c8adb1137eff0c71a5a",
+    "id": 410,
+    "name": "Gigabyte RX 5700 XT Gaming OC",
+    "price": 1050,
+    "imageUrl": "<:GigabyteRX5700XTGamingOC:1452725337489150043>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498ca8db1137eff0c71a5f",
+    "id": 980,
+    "name": "Gigabyte RX 6650 XT Gaming OC",
+    "price": 900,
+    "imageUrl": "<:GigabyteRX6650XTGamingOC:1452725476094246913>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498cb5db1137eff0c71a64",
+    "id": 787,
+    "name": "ASRock RX 6700 XT Challenger Pro OC",
+    "price": 1350,
+    "imageUrl": "<:ASRockRX6700XTChallengerProOC:1452725447174652100>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498cccdb1137eff0c71a69",
+    "id": 999,
+    "name": "Gigabyte RX 6800 Gaming OC",
+    "price": 1750,
+    "imageUrl": "<:GigabyteRX6800GamingOC:1452725376085135473>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498cdfdb1137eff0c71a6e",
+    "id": 70,
+    "name": "ASRock RX 6900 XT Phantom Gaming D OC",
+    "price": 2700,
+    "imageUrl": "<:ASRockRX6900XTPhantomGamingDOC:1452725396184498439>",
+    "category": "gpu",
+    "__v": 0
+  },
+  {
+    "_id": "69498d97db1137eff0c71a73",
+    "id": 736,
+    "name": "HyperX Fury RGB 8GB 3200MHz",
+    "price": 135,
+    "imageUrl": "<:HyperXFuryRGB:1452729026715058269>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69498da3db1137eff0c71a78",
+    "id": 763,
+    "name": "HyperX Fury RGB 8GB 3600MHz",
+    "price": 150,
+    "imageUrl": "<:HyperXFuryRGB:1452729026715058269>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69498db6db1137eff0c71a7d",
+    "id": 595,
+    "name": "HyperX Fury RGB 16GB 3733MHz",
+    "price": 260,
+    "imageUrl": "<:HyperXFuryRGB:1452729026715058269>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69498dd0db1137eff0c71a82",
+    "id": 85,
+    "name": "Acer Predator Apollo RGB 8GB 3200MHz",
+    "price": 135,
+    "imageUrl": "<:AcerPredatorApolloRGB:1452729079370350692>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69498ddedb1137eff0c71a87",
+    "id": 921,
+    "name": "Acer Predator Apollo RGB 8GB 3600MHz",
+    "price": 150,
+    "imageUrl": "<:AcerPredatorApolloRGB:1452729079370350692>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69498deddb1137eff0c71a8c",
+    "id": 99,
+    "name": "Acer Predator Apollo RGB 16GB 4000MHz",
+    "price": 330,
+    "imageUrl": "<:AcerPredatorApolloRGB:1452729079370350692>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69498e05db1137eff0c71a91",
+    "id": 483,
+    "name": "Corsair Vengeance RGB  Pro SL 8GB 3200MHz",
+    "price": 135,
+    "imageUrl": "<:CorsairVengeanceRGBProSL:1452729128821461185>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69498e26db1137eff0c71a96",
+    "id": 768,
+    "name": "Corsair Vengeance RGB Pro SL 8GB 4000MHz",
+    "price": 210,
+    "imageUrl": "<:CorsairVengeanceRGBProSL:1452729128821461185>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69498e34db1137eff0c71a9b",
+    "id": 222,
+    "name": "Corsair Vengeance RGB Pro SL 16GB 4000MHz",
+    "price": 390,
+    "imageUrl": "<:CorsairVengeanceRGBProSL:1452729128821461185>",
+    "category": "ram",
+    "ramType": "DDR4",
+    "__v": 0
+  },
+  {
+    "_id": "69499106db1137eff0c71aa9",
+    "id": 854,
+    "name": "Corsair RM750x (2021)",
+    "price": 390,
+    "imageUrl": "<:CorsairRM850x:1073779125782847498>",
+    "category": "psu",
+    "__v": 0
+  },
+  {
+    "_id": "69499113db1137eff0c71aae",
+    "id": 855,
+    "name": "Corsair RM650x (2021)",
+    "price": 300,
+    "imageUrl": "<:CorsairRM850x:1073779125782847498>",
+    "category": "psu",
     "__v": 0
   }
 ]
