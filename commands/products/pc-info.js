@@ -194,7 +194,7 @@ module.exports = {
             return;
         }
 
-        await interaction.deferReply({ ephemeral: true });
+        await interaction.deferReply();
 
         const userId = interaction.user.id;
         const guildId = interaction.guild.id;

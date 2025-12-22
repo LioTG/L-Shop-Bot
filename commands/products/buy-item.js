@@ -63,7 +63,11 @@ module.exports = {
                     return matchesName;
                 });
 
-                const choices = filtered.slice(0, 25).map(product => ({ name: product.name, value: product.name }));
+                const sorted = filtered.slice().sort((a, b) =>
+                    (a.name || '').localeCompare(b.name || '', 'en', { sensitivity: 'base' })
+                );
+
+                const choices = sorted.slice(0, 25).map(product => ({ name: product.name, value: product.name }));
                 await interaction.respond(choices);
             } catch (error) {
                 console.error('Error en autocomplete /buy-item:', error);
