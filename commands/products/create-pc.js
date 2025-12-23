@@ -226,7 +226,7 @@ module.exports = {
         .setDescription('Build a virtual PC with components from your inventory.')
         .addStringOption((option) =>
             option
-                .setName('nombre')
+                .setName('name')
                 .setDescription('PC name (optional, default is PC 1, PC 2, etc.)')
                 .setRequired(false),
         ),
@@ -239,7 +239,7 @@ module.exports = {
 
         await interaction.deferReply({ ephemeral: true });
 
-        const desiredName = (interaction.options.getString('nombre') || '').trim();
+        const desiredName = (interaction.options.getString('name') || '').trim();
         const userId = interaction.user.id;
         const guildId = interaction.guild.id;
 

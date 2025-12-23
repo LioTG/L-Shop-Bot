@@ -8,7 +8,8 @@ const productSchema = new mongoose.Schema({
     category: { type: String, required: true },
     socket: { type: String },
     ramType: { type: String },
-    ramSlots: { type: Number }
+    ramSlots: { type: Number },
+    hashRate: { type: Number }
 });
 
 const Product = mongoose.model('Product', productSchema);

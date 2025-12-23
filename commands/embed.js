@@ -26,7 +26,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setColor('#5865F2')
             .setTitle('L-Shop Bot')
-            .setURL('https://nutellagamertv2000.wixsite.com/lstudios')
+            .setURL('https://app.devin.ai/wiki/LioTG/L-Shop-Bot#1')
             .setAuthor({ name: 'L.Studios', iconURL: 'https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true' })
             .setDescription('Overview and runtime stats for the L-Shop Discord bot.')
             .setThumbnail('https://cdn.discordapp.com/avatars/1005989631864606831/e6976fe6cb61b8db8d743f9917020471.png?size=4096&ignore=true')

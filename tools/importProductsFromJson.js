@@ -12,6 +12,10 @@ const normalizeRamSlots = (value) => {
   const numeric = Number(value);
   return Number.isFinite(numeric) && numeric > 0 ? Math.floor(numeric) : undefined;
 };
+const normalizeHashRate = (value) => {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : undefined;
+};
 
 (async () => {
   try {
@@ -49,7 +53,8 @@ const normalizeRamSlots = (value) => {
         category,
         socket: normalizeSocket(item.socket),
         ramType: normalizeRamType(item.ramType),
-        ramSlots: normalizeRamSlots(item.ramSlots)
+        ramSlots: normalizeRamSlots(item.ramSlots),
+        hashRate: normalizeHashRate(item.hashRate)
       };
 
       const existingByName = await Product.findOne({ name }).select('_id id name').lean();

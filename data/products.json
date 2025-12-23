@@ -7,7 +7,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "__v": 0,
     "category": "cpu",
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 320
   },
   {
     "_id": "656f2d3fdfbd3196b5420769",
@@ -16,7 +17,8 @@
     "price": 165,
     "imageUrl": "<:SN570:1073778583027339284>",
     "__v": 0,
-    "category": "storage"
+    "category": "storage",
+    "hashRate": 7
   },
   {
     "_id": "656f2c0edfbd3196b5420757",
@@ -25,7 +27,8 @@
     "price": 330,
     "imageUrl": "<:CorsairA500:1073777986966401124>",
     "__v": 0,
-    "category": "cooler"
+    "category": "cooler",
+    "hashRate": 0
   },
   {
     "_id": "656f2cdddfbd3196b5420760",
@@ -35,7 +38,8 @@
     "imageUrl": "<:FuryBeastRGB:1073778076313473025>",
     "__v": 0,
     "category": "ram",
-    "ramType": "DDR5"
+    "ramType": "DDR5",
+    "hashRate": 14
   },
   {
     "_id": "656f2ab1dfbd3196b5420744",
@@ -47,7 +51,8 @@
     "category": "motherboard",
     "ramSlots": 4,
     "ramType": "DDR4",
-    "socket": "AM4"
+    "socket": "AM4",
+    "hashRate": 0
   },
   {
     "_id": "656f2e42dfbd3196b542077a",
@@ -56,7 +61,8 @@
     "price": 450,
     "imageUrl": "<:CorsairRM850x:1073779125782847498>",
     "__v": 0,
-    "category": "psu"
+    "category": "psu",
+    "hashRate": 0
   },
   {
     "_id": "656f2dd9dfbd3196b5420772",
@@ -65,7 +71,8 @@
     "price": 900,
     "imageUrl": "<:GigabyteRTX3060EagleOC:1181596626045906984>",
     "__v": 0,
-    "category": "gpu"
+    "category": "gpu",
+    "hashRate": 225
   },
   {
     "_id": "69372f663812a2ddeba2be9f",
@@ -74,7 +81,8 @@
     "price": 240,
     "imageUrl": "<:AntryxCase:1073777713929793558>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "6939b5735b684ae4fa0ecebf",
@@ -83,7 +91,8 @@
     "price": 300,
     "imageUrl": "<:SN570:1073778583027339284>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 12
   },
   {
     "_id": "6939b59f5b684ae4fa0ecec4",
@@ -92,7 +101,8 @@
     "price": 410,
     "imageUrl": "<:SN570:1073778583027339284>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 16
   },
   {
     "_id": "6939b5b45b684ae4fa0ecec9",
@@ -101,7 +111,8 @@
     "price": 570,
     "imageUrl": "<:SN570:1073778583027339284>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 23
   },
   {
     "_id": "6939b6225b684ae4fa0eced0",
@@ -111,7 +122,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 252
   },
   {
     "_id": "6939b6395b684ae4fa0eced5",
@@ -121,7 +133,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 189
   },
   {
     "_id": "6939b6515b684ae4fa0eceda",
@@ -131,7 +144,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 144
   },
   {
     "_id": "6939b6665b684ae4fa0ecedf",
@@ -141,7 +155,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 108
   },
   {
     "_id": "6939b67c5b684ae4fa0ecee4",
@@ -151,7 +166,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 153
   },
   {
     "_id": "6939b6935b684ae4fa0ecee9",
@@ -161,7 +177,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 198
   },
   {
     "_id": "6939b6a65b684ae4fa0eceee",
@@ -171,7 +188,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 207
   },
   {
     "_id": "6939b6ba5b684ae4fa0ecef3",
@@ -181,7 +199,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 243
   },
   {
     "_id": "6939b6d35b684ae4fa0ecef8",
@@ -191,7 +210,8 @@
     "imageUrl": "<:Ryzen7000:1073777217294839818>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 279
   },
   {
     "_id": "6939b71a5b684ae4fa0ecf02",
@@ -200,7 +220,8 @@
     "price": 90,
     "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 4
   },
   {
     "_id": "6939b73b5b684ae4fa0ecf07",
@@ -209,7 +230,8 @@
     "price": 130,
     "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 5
   },
   {
     "_id": "6939b7565b684ae4fa0ecf0c",
@@ -218,7 +240,8 @@
     "price": 170,
     "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 7
   },
   {
     "_id": "6939b76a5b684ae4fa0ecf11",
@@ -227,7 +250,8 @@
     "price": 230,
     "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 9
   },
   {
     "_id": "6939b7865b684ae4fa0ecf16",
@@ -236,7 +260,8 @@
     "price": 310,
     "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 12
   },
   {
     "_id": "6939b79b5b684ae4fa0ecf1b",
@@ -245,7 +270,8 @@
     "price": 460,
     "imageUrl": "<:SeagateBarracuda:1073778833519554721>",
     "category": "storage",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 18
   },
   {
     "_id": "6939ba775b684ae4fa0ecf2c",
@@ -257,7 +283,8 @@
     "__v": 0,
     "ramSlots": 4,
     "ramType": "DDR5",
-    "socket": "AM5"
+    "socket": "AM5",
+    "hashRate": 0
   },
   {
     "_id": "69497c3bdb1137eff0c7192a",
@@ -267,7 +294,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "socket": "AM4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 113
   },
   {
     "_id": "69497c59db1137eff0c7192f",
@@ -277,7 +305,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "__v": 0,
-    "socket": "AM4"
+    "socket": "AM4",
+    "hashRate": 165
   },
   {
     "_id": "69497c9adb1137eff0c71937",
@@ -287,7 +316,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "socket": "AM4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 222
   },
   {
     "_id": "69497cbbdb1137eff0c7193c",
@@ -297,7 +327,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "socket": "AM4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 240
   },
   {
     "_id": "69497dc2db1137eff0c71942",
@@ -307,7 +338,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "socket": "AM4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 77
   },
   {
     "_id": "69497de6db1137eff0c71947",
@@ -317,7 +349,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "socket": "AM4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 95
   },
   {
     "_id": "69497df9db1137eff0c7194c",
@@ -327,7 +360,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "socket": "AM4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 140
   },
   {
     "_id": "69497e11db1137eff0c71951",
@@ -337,7 +371,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "socket": "AM4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 207
   },
   {
     "_id": "69497e3cdb1137eff0c71956",
@@ -347,7 +382,8 @@
     "imageUrl": "<:Ryzen5000:1452700478721888327>",
     "category": "cpu",
     "socket": "AM4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 126
   },
   {
     "_id": "69497ea4db1137eff0c7195d",
@@ -357,7 +393,8 @@
     "imageUrl": "<:FuryBeastRGB:1073778076313473025>",
     "category": "ram",
     "ramType": "DDR5",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 19
   },
   {
     "_id": "69497ecedb1137eff0c71962",
@@ -367,7 +404,8 @@
     "imageUrl": "<:FuryBeastRGB:1073778076313473025>",
     "category": "ram",
     "ramType": "DDR5",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 33
   },
   {
     "_id": "69497fdedb1137eff0c7196a",
@@ -376,7 +414,8 @@
     "price": 390,
     "imageUrl": "<:LianLiLancoolIIMeshRGB:1452713986075398285>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69497ffadb1137eff0c7196f",
@@ -385,7 +424,8 @@
     "price": 540,
     "imageUrl": "<:AsusROGStrixHelios:1452714086096703619>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498009db1137eff0c71974",
@@ -394,7 +434,8 @@
     "price": 580,
     "imageUrl": "<:AsusROGStrixHeliosWhiteEdition:1452714133123498238>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498055db1137eff0c7197a",
@@ -403,7 +444,8 @@
     "price": 480,
     "imageUrl": "<:CorsairiCUE4000XRGB:1452714228703297607>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498073db1137eff0c7197f",
@@ -412,7 +454,8 @@
     "price": 520,
     "imageUrl": "<:CorsairiCUE4000XRGBWhite:1452714251486630039>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "6949809cdb1137eff0c71985",
@@ -421,7 +464,8 @@
     "price": 390,
     "imageUrl": "<:AsusTUFGamingGT301:1452714174911086733>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "694980e4db1137eff0c71991",
@@ -430,7 +474,8 @@
     "price": 360,
     "imageUrl": "<:ThermaltakeDivider300TGBlack:1452714324891271240>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "694980ffdb1137eff0c71996",
@@ -439,7 +484,8 @@
     "price": 400,
     "imageUrl": "<:ThermaltakeDivider300TGSnow:1452714346944925830>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "6949812cdb1137eff0c7199b",
@@ -448,7 +494,8 @@
     "price": 300,
     "imageUrl": "<:AntecDF600Flux:1452715887508455647>",
     "category": "cases",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "694983f0db1137eff0c719a4",
@@ -457,7 +504,8 @@
     "price": 220,
     "imageUrl": "<:bequietDarkRockSlim:1452718267117469786>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "6949841ddb1137eff0c719a9",
@@ -466,7 +514,8 @@
     "price": 400,
     "imageUrl": "<:CoolerMasterMasterAirMA624Stealt:1452718339565551616>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "6949842edb1137eff0c719ae",
@@ -475,7 +524,8 @@
     "price": 150,
     "imageUrl": "<:AntryxMirage510:1452718400672370759>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "6949844cdb1137eff0c719b3",
@@ -484,7 +534,8 @@
     "price": 570,
     "imageUrl": "<:GigabyteAORUSWaterForceX240:1452718526669394045>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498476db1137eff0c719b8",
@@ -493,7 +544,8 @@
     "price": 1300,
     "imageUrl": "<:GigabyteAORUSWaterForceX360:1452718575423852595>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "694984d3db1137eff0c719c5",
@@ -502,7 +554,8 @@
     "price": 620,
     "imageUrl": "<:CorsairiCUEH100iEliteCapellixXT:1452718649654644878>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "694984e4db1137eff0c719ca",
@@ -511,7 +564,8 @@
     "price": 650,
     "imageUrl": "<:CorsairiCUEH100iEliteCapellixXTW:1452718701156499517>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498506db1137eff0c719cf",
@@ -520,7 +574,8 @@
     "price": 950,
     "imageUrl": "<:CorsairiCUEH150iEliteCapellixXT:1452718727899648162>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "694985f6db1137eff0c719db",
@@ -529,7 +584,8 @@
     "price": 980,
     "imageUrl": "<:CorsairiCUEH150iEliteCapellixXTW:1452718745809060124>",
     "category": "cooler",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "694986dcdb1137eff0c719e0",
@@ -541,7 +597,8 @@
     "__v": 0,
     "ramSlots": 2,
     "ramType": "DDR4",
-    "socket": "AM4"
+    "socket": "AM4",
+    "hashRate": 0
   },
   {
     "_id": "69498706db1137eff0c719e5",
@@ -553,7 +610,8 @@
     "__v": 0,
     "ramSlots": 4,
     "ramType": "DDR4",
-    "socket": "AM4"
+    "socket": "AM4",
+    "hashRate": 0
   },
   {
     "_id": "69498732db1137eff0c719ea",
@@ -565,7 +623,8 @@
     "socket": "AM4",
     "ramType": "DDR4",
     "ramSlots": 4,
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498786db1137eff0c719f1",
@@ -577,7 +636,8 @@
     "socket": "AM4",
     "ramType": "DDR4",
     "ramSlots": 2,
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498836db1137eff0c719fb",
@@ -589,7 +649,8 @@
     "socket": "AM4",
     "ramType": "DDR4",
     "ramSlots": 2,
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498876db1137eff0c71a00",
@@ -601,7 +662,8 @@
     "socket": "AM4",
     "ramType": "DDR4",
     "ramSlots": 4,
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "694988a4db1137eff0c71a05",
@@ -613,7 +675,8 @@
     "socket": "AM4",
     "ramType": "DDR4",
     "ramSlots": 4,
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498913db1137eff0c71a0c",
@@ -625,7 +688,8 @@
     "socket": "AM5",
     "ramType": "DDR5",
     "ramSlots": 4,
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69498aa7db1137eff0c71a1b",
@@ -634,7 +698,8 @@
     "price": 400,
     "imageUrl": "<:MSIGTX1650VentusXSOC:1452724693017690265>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 100
   },
   {
     "_id": "69498ac4db1137eff0c71a20",
@@ -643,7 +708,8 @@
     "price": 520,
     "imageUrl": "<:MSIGTX1650SuperGamingX:1452724738152468582>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 130
   },
   {
     "_id": "69498adedb1137eff0c71a25",
@@ -652,7 +718,8 @@
     "price": 600,
     "imageUrl": "<:MSIGTX1660SuperGamingX:1452724759488888963>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 150
   },
   {
     "_id": "69498b13db1137eff0c71a2a",
@@ -661,7 +728,8 @@
     "price": 1200,
     "imageUrl": "<:MSIRTX3060TiGamingXTrio:1452724825733861580>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 300
   },
   {
     "_id": "69498b3adb1137eff0c71a2f",
@@ -670,7 +738,8 @@
     "price": 1500,
     "imageUrl": "<:GigabyteRTX3070VisionOC:1452724881430020148>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 375
   },
   {
     "_id": "69498ba2db1137eff0c71a34",
@@ -679,7 +748,8 @@
     "price": 4050,
     "imageUrl": "<:AORUSRTX3090Xtreme24G:1452724905098481906>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 1013
   },
   {
     "_id": "69498bc5db1137eff0c71a3c",
@@ -688,7 +758,8 @@
     "price": 1750,
     "imageUrl": "<:ASUSTUFGamingRTX3070TiOC:1452724969883697293>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 438
   },
   {
     "_id": "69498bebdb1137eff0c71a41",
@@ -697,7 +768,8 @@
     "price": 2780,
     "imageUrl": "<:MSIRTX3080TiVentus3XOC:1452724990460821707>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 695
   },
   {
     "_id": "69498c1bdb1137eff0c71a4b",
@@ -706,7 +778,8 @@
     "price": 1900,
     "imageUrl": "<:GigabyteRTX4070GamingOC:1452725070970486866>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 475
   },
   {
     "_id": "69498c3edb1137eff0c71a55",
@@ -715,7 +788,8 @@
     "price": 550,
     "imageUrl": "<:ASRockRX5500XTChallengerD4GOC:1452725316127821976>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 138
   },
   {
     "_id": "69498c8adb1137eff0c71a5a",
@@ -724,7 +798,8 @@
     "price": 1050,
     "imageUrl": "<:GigabyteRX5700XTGamingOC:1452725337489150043>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 263
   },
   {
     "_id": "69498ca8db1137eff0c71a5f",
@@ -733,7 +808,8 @@
     "price": 900,
     "imageUrl": "<:GigabyteRX6650XTGamingOC:1452725476094246913>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 225
   },
   {
     "_id": "69498cb5db1137eff0c71a64",
@@ -742,7 +818,8 @@
     "price": 1350,
     "imageUrl": "<:ASRockRX6700XTChallengerProOC:1452725447174652100>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 338
   },
   {
     "_id": "69498cccdb1137eff0c71a69",
@@ -751,7 +828,8 @@
     "price": 1750,
     "imageUrl": "<:GigabyteRX6800GamingOC:1452725376085135473>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 438
   },
   {
     "_id": "69498cdfdb1137eff0c71a6e",
@@ -760,7 +838,8 @@
     "price": 2700,
     "imageUrl": "<:ASRockRX6900XTPhantomGamingDOC:1452725396184498439>",
     "category": "gpu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 675
   },
   {
     "_id": "69498d97db1137eff0c71a73",
@@ -770,7 +849,8 @@
     "imageUrl": "<:HyperXFuryRGB:1452729026715058269>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 8
   },
   {
     "_id": "69498da3db1137eff0c71a78",
@@ -780,7 +860,8 @@
     "imageUrl": "<:HyperXFuryRGB:1452729026715058269>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 9
   },
   {
     "_id": "69498db6db1137eff0c71a7d",
@@ -790,7 +871,8 @@
     "imageUrl": "<:HyperXFuryRGB:1452729026715058269>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 16
   },
   {
     "_id": "69498dd0db1137eff0c71a82",
@@ -800,7 +882,8 @@
     "imageUrl": "<:AcerPredatorApolloRGB:1452729079370350692>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 8
   },
   {
     "_id": "69498ddedb1137eff0c71a87",
@@ -810,7 +893,8 @@
     "imageUrl": "<:AcerPredatorApolloRGB:1452729079370350692>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 9
   },
   {
     "_id": "69498deddb1137eff0c71a8c",
@@ -820,7 +904,8 @@
     "imageUrl": "<:AcerPredatorApolloRGB:1452729079370350692>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 20
   },
   {
     "_id": "69498e05db1137eff0c71a91",
@@ -830,7 +915,8 @@
     "imageUrl": "<:CorsairVengeanceRGBProSL:1452729128821461185>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 8
   },
   {
     "_id": "69498e26db1137eff0c71a96",
@@ -840,7 +926,8 @@
     "imageUrl": "<:CorsairVengeanceRGBProSL:1452729128821461185>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 13
   },
   {
     "_id": "69498e34db1137eff0c71a9b",
@@ -850,7 +937,8 @@
     "imageUrl": "<:CorsairVengeanceRGBProSL:1452729128821461185>",
     "category": "ram",
     "ramType": "DDR4",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 23
   },
   {
     "_id": "69499106db1137eff0c71aa9",
@@ -859,7 +947,8 @@
     "price": 390,
     "imageUrl": "<:CorsairRM850x:1073779125782847498>",
     "category": "psu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   },
   {
     "_id": "69499113db1137eff0c71aae",
@@ -868,6 +957,7 @@
     "price": 300,
     "imageUrl": "<:CorsairRM850x:1073779125782847498>",
     "category": "psu",
-    "__v": 0
+    "__v": 0,
+    "hashRate": 0
   }
 ]
