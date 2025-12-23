@@ -20,7 +20,12 @@ const PcComponentSchema = new mongoose.Schema({
 const PcBuildSchema = new mongoose.Schema({
     name: { type: String, required: true },
     components: { type: [PcComponentSchema], default: [] },
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    mining: {
+        isMining: { type: Boolean, default: false },
+        startedAt: { type: Date },
+        lastCollectedAt: { type: Date }
+    }
 }, { _id: false });
 
 const UserProfileSchema = new mongoose.Schema({
